@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/09 01:54:32 by hjrifi            #+#    #+#             */
+/*   Updated: 2022/04/09 02:01:27 by hjrifi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "header.h"
 
 int	myF(int key, void *n)
@@ -12,8 +24,6 @@ int	myF(int key, void *n)
 		write(1, "\\/\n", 4);
 	else if (key == 53)
 		exit(0);
-	
-	printf (";;;;;=? %d\n", key);
 	return 0;
 }
 int main()
@@ -21,14 +31,14 @@ int main()
 	void	*mlx_ptr;
 	void	*win_ptr;
 	void	*img;
-	char	*relative_path = "./img.png";
+	char	*relative_path = "./salam.xpm";
 	int		img_width;
 	int		img_height;
 
 	mlx_ptr = mlx_init();
 	win_ptr = mlx_new_window(mlx_ptr, 500, 500, "hjrifi");
-	mlx_pixel_put(mlx_ptr, win_ptr, 250, 250, 0xFFFFFF);
 	img = mlx_xpm_file_to_image(mlx_ptr, relative_path, &img_width, &img_height);
+	mlx_put_image_to_window(mlx_ptr, win_ptr, img, 0, 0);
 	mlx_key_hook(win_ptr, myF, "maroc");
 	mlx_loop(mlx_ptr);
 	return(0);

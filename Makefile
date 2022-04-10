@@ -1,7 +1,8 @@
-CC = gcc -lmlx -framework OpenGL -framework AppKit
+CC = gcc 
 
 C_FLAG = -Wall -Wextra -Werror 
 
+FLAG_MLX = -lmlx -framework OpenGL -framework AppKit
 NAME = So_long.a
 
 HEADER  =	header.h \
@@ -21,7 +22,7 @@ O_FILES =	get_next_line_utils.o \
 all :
 	$(CC) -c $(C_FILES) 
 	ar -rc $(NAME) $(O_FILES)
-	$(CC) -o So_long So_long.c $(NAME)
+	$(CC) $(FLAG_MLX) -o So_long So_long.c $(NAME)
 
 clean : 
 	rm -r So_long.a *.o So_long

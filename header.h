@@ -16,4 +16,12 @@ char	*ft_strdup(char *s1);
 char	*ft_strchr(char *s, int c);
 char	*ft_substr(char *s, int start, int len);
 char	*check_arg(int ac, int fd);
+
+typedef struct n_list
+{
+	void	*img;
+	void	*path_img;
+}	t_list;
+
+
 #endif

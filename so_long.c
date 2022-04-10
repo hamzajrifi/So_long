@@ -6,7 +6,7 @@
 /*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 01:54:32 by hjrifi            #+#    #+#             */
-/*   Updated: 2022/04/10 15:18:52 by hjrifi           ###   ########.fr       */
+/*   Updated: 2022/04/10 17:04:02 by hjrifi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int main(int ac, char **av)
 	/******/
 	fd = open(av[1], O_RDWR);
 	check_arg(ac, fd);
-	
+	fd = open(av[1], O_RDWR);
 	/******/
 	mlx_ptr = mlx_init();
 	win_ptr = mlx_new_window(mlx_ptr, 500, 500, "hjrifi");

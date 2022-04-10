@@ -9,10 +9,12 @@ HEADER  =	header.h \
 
 C_FILES =	./get_next_line/get_next_line_utils.c \
 			./get_next_line/get_next_line.c \
+			./checker/checker.c \
 			so_long.c
 
 O_FILES =	get_next_line_utils.o \
 			get_next_line.o \
+			checker.o \
 			so_long.o
 
 

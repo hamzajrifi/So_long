@@ -6,11 +6,11 @@
 /*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 19:10:53 by hjrifi            #+#    #+#             */
-/*   Updated: 2022/04/09 18:23:50 by hjrifi           ###   ########.fr       */
+/*   Updated: 2022/04/10 00:42:37 by hjrifi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../header.h"
 
 char	*ft_strchr(char *s, int c)
 {

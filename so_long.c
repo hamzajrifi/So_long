@@ -6,7 +6,7 @@
 /*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 01:54:32 by hjrifi            #+#    #+#             */
-/*   Updated: 2022/04/10 17:04:02 by hjrifi           ###   ########.fr       */
+/*   Updated: 2022/04/10 23:05:44 by hjrifi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int main(int ac, char **av)
 	///**** variables ***//
 	char	*ptr;
 	int		fd;
+	t_list	*r_checker;
 	/*** en variable **/
 	void	*mlx_ptr;
 	void	*win_ptr;
@@ -45,11 +46,16 @@ int main(int ac, char **av)
 	(void)	ac;
 	
 
-	/******/
+	/**** --- done ---****/
 	fd = open(av[1], O_RDWR);
-	check_arg(ac, fd);
+	r_checker = check_arg(ac, fd);
+	check_type_map(av[1]);
 	fd = open(av[1], O_RDWR);
-	/******/
+	/*** --- en cours --- ***/
+	printf("with = %d \n", r_checker->img_width);
+	printf("height = %d \n", r_checker->img_height);
+	create_map(fd);
+	/*******/
 	mlx_ptr = mlx_init();
 	win_ptr = mlx_new_window(mlx_ptr, 500, 500, "hjrifi");
 	img_up = mlx_xpm_file_to_image(mlx_ptr, path_up, &img_width, &img_height);
@@ -69,4 +75,3 @@ int main(int ac, char **av)
 	mlx_loop(mlx_ptr);
 	return(0);
 }
-

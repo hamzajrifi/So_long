@@ -11,18 +11,22 @@ HEADER  =	header.h \
 C_FILES =	./get_next_line/get_next_line_utils.c \
 			./get_next_line/get_next_line.c \
 			./checker/checker.c \
+			./create_graphique_map/cheak_char_map.c\
+			./checker/check_name_map.c \
 			so_long.c
 
 O_FILES =	get_next_line_utils.o \
 			get_next_line.o \
 			checker.o \
+			cheak_char_map.o \
+			check_name_map.o \
 			so_long.o
 
 
 all :
 	$(CC) -c $(C_FILES) 
 	ar -rc $(NAME) $(O_FILES)
-	$(CC) $(FLAG_MLX) -o So_long So_long.c $(NAME)
+	$(CC) $(FLAG_MLX)  -o So_long So_long.c $(NAME)
 
 clean : 
 	rm -r So_long.a *.o So_long

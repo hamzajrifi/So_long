@@ -6,7 +6,7 @@
 /*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 00:22:45 by hjrifi            #+#    #+#             */
-/*   Updated: 2022/04/10 17:12:50 by hjrifi           ###   ########.fr       */
+/*   Updated: 2022/04/11 00:08:15 by hjrifi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	check_one_up_down(char *ptr, int n_check)
 	return (ft_strlen(ptr));
 }
 
-//*------------- check if any other character in map ---------------/
+//*---------- check if any other character in map ------------/
 int	check_character(char *ptr)
 {
 	int		i;
@@ -48,17 +48,20 @@ int	check_character(char *ptr)
 			return (1);
 		i++;
 	}
+	free(cha_map);
 	return (0);
 }
 
 //--------  check caracter if 1 in left and right ---------/
-int	check_one_left_right(char *ptr, int size_line)
+int	check_one_left_right(char *ptr, int size_line, int n_check)
 {
 	int	i;
 
 	i = -1;
 	if (!ptr)
 		return (1);
+	if (ptr[size_line - 1] == '\0' && size_line != ft_strlen(ptr) && n_check == 1)
+			size_line -= 1;
 	if (size_line != ft_strlen(ptr) || check_character(ptr) == 1)
 		check_arg(0, -1);
 	while (ptr[++i] != '\n' && ptr[i])
@@ -67,10 +70,8 @@ int	check_one_left_right(char *ptr, int size_line)
 			check_arg(0, -1);
 		else if (ptr[i + 1] == '\n')
 		{
-			if (ptr[i] != '1')
-			{
-				check_arg(0, -1);
-			}
+			if (ptr[i] != '1')		
+				check_arg(0, -1);		
 		}	
 	}
 	return (0);
@@ -84,8 +85,13 @@ void	check_p_c(char *ptr, int n)
 	int			i;
 
 	i = 0;
-	if ((p != 1 || e != 1) && n == 1)
+	if ((p != 1 || e < 1) && n == 1)
 		check_arg(0, -1);
+	else if (n == 1)
+	{
+		p = 0;
+		e = 0;
+	}
 	while (ptr[i])
 	{
 		if (ptr[i] == 'P')
@@ -97,7 +103,7 @@ void	check_p_c(char *ptr, int n)
 }
 
 //--------  check map ---------/
-char	*check_map(fd)
+t_list	*check_map(int fd, t_list *str)
 {
 	char	*ptr;
 	int		i;
@@ -111,33 +117,41 @@ char	*check_map(fd)
 	n_check = 0;
 	while (n_check == 0)
 	{
+		write(1, ptr, ft_strlen(ptr));
 		if (ptr)
 			temp = ptr;
-		n_check = check_one_left_right(ptr, size_line);
 		if (i == 0 || n_check == 1)
+		{
 			check_one_up_down(temp, n_check);
-		if (i > 0)
+		}
+		if (n_check == 0 && i++ > 0)
+		{
+			n_check = check_one_left_right(ptr, size_line, n_check);
 			check_p_c(temp, n_check);
-		if (n_check == 0)
+			free(ptr);
 			ptr = get_next_line(fd);
-		i++;
+		}
+		
 	}
-	return (ptr);
+	free(ptr);
+	str->img_width = i;
+	str->img_height = size_line - 2;
+	return (str);
 }
 
 //--------  check argiment ---------/
-char	*check_arg(int ac, int fd)
+t_list	*check_arg(int ac, int fd)
 {
-	char	*ptr;
+	t_list	*ptr;
 
 	if (ac == 1)
-		write(1, "inserte map\n", 13);
+		write(2, "inserte map\n", 13);
 	else if (ac > 2)
-		write(1, "please inserte just map\n", 25);
+		write(2, "please inserte just map\n", 25);
 	else if (fd < 0)
-		write(1, "please inserte correcte your map\n", 34);
-	if (ac == 1 || ac > 2 || fd < 0)
-		exit(1);
-	check_map(fd);
+		write(2, "please inserte correcte your map\n", 34);
+	if (ac == 1 || ac > 2 || fd < 0 )
+		exit(1);	
+	ptr = check_map(fd, ptr);
 	return (ptr);
 }

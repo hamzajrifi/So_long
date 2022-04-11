@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   header.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/11 16:47:41 by hjrifi            #+#    #+#             */
+/*   Updated: 2022/04/11 21:51:17 by hjrifi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef HEADER_H
 # define HEADER_H
 
@@ -11,20 +23,16 @@ typedef struct n_list
 {
 	char	*path_img;
 	void	*img;
+	char	**map;
 	int		img_width;
 	int		img_height;
+	int		i;
 }	t_list;
 
-char	*get_next_line(int fd);
-void	free_mytab(char	**str);
-char	*ft_strjoin(char *s1, char *s2);
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlen(const char *str);
 char	*ft_strdup(char *s1);
-char	*ft_strchr(char *s, int c);
-char	*ft_substr(char *s, int start, int len);
-t_list	*check_arg(int ac, int fd);
-void	create_map(int fd);
-void	check_type_map(char *name_map);
+t_list	*check_map(int fd, char *name_map);
+void	ft_error(int n_error);
+char	*read_line(int fd);
 
 #endif

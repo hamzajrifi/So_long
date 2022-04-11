@@ -1,33 +1,29 @@
 CC = gcc 
 
+NAME = so_long.a
+
 C_FLAG = -Wall -Wextra -Werror 
 
 FLAG_MLX = -lmlx -framework OpenGL -framework AppKit
-NAME = So_long.a
 
-HEADER  =	header.h \
-			./get_next_line/get_next_line.h
+HEADER  =	header.h 
 
-C_FILES =	./get_next_line/get_next_line_utils.c \
-			./get_next_line/get_next_line.c \
-			./checker/checker.c \
-			./create_graphique_map/cheak_char_map.c\
-			./checker/check_name_map.c \
+C_FILES =	so_long_utils.c \
+			check_map.c 	\
+			ft_error.c\
 			so_long.c
 
-O_FILES =	get_next_line_utils.o \
-			get_next_line.o \
-			checker.o \
-			cheak_char_map.o \
-			check_name_map.o \
+O_FILES =	so_long_utils.o \
+			check_map.o 	\
+			ft_error.o \
 			so_long.o
-
 
 all :
 	$(CC) -c $(C_FILES) 
 	ar -rc $(NAME) $(O_FILES)
-	$(CC) $(FLAG_MLX)  -o So_long So_long.c $(NAME)
+	$(CC) $(FLAG_MLX)  -o so_long so_long.c $(NAME)
 
 clean : 
-	rm -r So_long.a *.o So_long
-	
+	@rm -f so_long.a *.o 
+fclean : clean
+	@rm -f so_long

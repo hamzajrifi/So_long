@@ -6,7 +6,7 @@
 /*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 20:50:54 by hjrifi            #+#    #+#             */
-/*   Updated: 2022/04/11 22:00:21 by hjrifi           ###   ########.fr       */
+/*   Updated: 2022/04/12 01:28:52 by hjrifi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,18 @@ t_list	*check_map(int fd, char *name_map)
 	check_type_map(name_map);
 	
 	map_data = malloc(sizeof(t_list));
-	map_data->i = 0;
+	map_data->i = 1;
+	map_data->map = malloc (sizeof(char));
 	map_data->map[0] = read_line(fd);
-	//while ((map_data.map[map_data.i++] = read_line(fd)));
+	while ((map_data->map[map_data->i++] = read_line(fd)));
+	map_data->i = 0;
+	//printf("map-> %s\n",map_data->map[(map_data->i)]);
+	while (map_data->map[(map_data->i)])
+	{
+		printf("kk\n");
+		//printf("map = %s\n", map_data->map[(map_data->i)]);
+		write(1, map_data->map[(map_data->i)], ft_strlen(map_data->map[(map_data->i)]));
+		(map_data->i) += 1;
+	}
 	return (map_data);
 }

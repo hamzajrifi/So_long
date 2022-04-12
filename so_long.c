@@ -6,7 +6,7 @@
 /*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 17:59:40 by hjrifi            #+#    #+#             */
-/*   Updated: 2022/04/11 21:51:47 by hjrifi           ###   ########.fr       */
+/*   Updated: 2022/04/12 01:07:35 by hjrifi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,14 @@ int	main(int ac, char **av)
 	
 	/***-- done --***/
 	fd = open(av[1], O_RDWR);
-	check_arg(ac, av, fd);
+	//check_arg(ac, av, fd);
 	/*** -- en coure -- ***/
 	map_data = check_map(fd, av[1]);
+	map_data->i = 0;
+	//while (map_data->map[map_data->i])
+	//{
+	//	printf("map = %s", map_data->map[map_data->i++]);
+	//}
 	
 	
 	return (0);

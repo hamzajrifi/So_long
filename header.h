@@ -15,6 +15,7 @@ typedef struct n_list
 	int		size_height;
 	int		size_with;
 	int		n_coin;
+	int		n_hole;
 	int		x;
 	int		y;
 }	t_list;

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   header.h                                           :+:      :+:    :+:   */
+/*   header_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 02:27:46 by hjrifi            #+#    #+#             */
-/*   Updated: 2022/04/15 09:36:05 by hjrifi           ###   ########.fr       */
+/*   Updated: 2022/04/15 09:59:12 by hjrifi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <mlx.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include <stdio.h>
 
 typedef struct n_list
 {
@@ -27,8 +28,11 @@ typedef struct n_list
 	int		size_with;
 	int		n_coin;
 	int		n_hole;
+	int		n_enemy;
 	int		*x_exit;
 	int		*y_exit;
+	int		*x_enemy;
+	int		*y_enemy;
 	int		x;
 	int		y;
 }	t_list;
@@ -47,6 +51,10 @@ typedef struct t_path
 	void	*img_wall_center;
 	void	*img_corner;
 	void	*img_coin;
+	void	*img_police_left;
+	void	*img_police_right;
+	char	*path_police_left;
+	char	*path_police_right;
 	char	*path_coin;
 	char	*path_floor;
 	char	*path_corner;
@@ -65,6 +73,8 @@ typedef struct all_list
 {
 	t_list	*map;
 	t_path	data;
+	int		x;
+	int		y;
 }		t_all_list;
 
 char	*get_next_line(int fd);

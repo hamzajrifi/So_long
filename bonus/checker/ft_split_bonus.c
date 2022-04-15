@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   ft_split_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/11 21:26:25 by hjrifi            #+#    #+#             */
-/*   Updated: 2022/04/15 07:30:36 by hjrifi           ###   ########.fr       */
+/*   Created: 2022/04/11 02:13:25 by hjrifi            #+#    #+#             */
+/*   Updated: 2022/04/15 07:55:05 by hjrifi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header.h"
+#include "../header_bonus.h"
 
-void	ft_error(char *str)
+/* ------------ calcule size height map --------*/
+void	ft_split(int fd, t_list **map)
 {
 	int		i;
-	
-	i = ft_strlen(str);
-	write(1, "Error\n", 7);
-	write(2, str, i);
-	exit(1);
-}
+	char	*ptr;
 
-/* --------------- */
-int	ft_bye(char *ptr)
-{
-	write(1, ptr, ft_strlen(ptr));
-	exit(0);
+	ptr = get_next_line(fd);
+	(*map)->size_with = ft_strlen(ptr);
+	i = 0;
+	while (ptr)
+	{
+		free(ptr);
+		ptr = get_next_line(fd);
+		i++;
+	}
+	close(fd);
+	(*map)->size_height = i;
 }

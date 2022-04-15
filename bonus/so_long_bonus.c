@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   so_long_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/11 21:26:25 by hjrifi            #+#    #+#             */
-/*   Updated: 2022/04/15 07:30:36 by hjrifi           ###   ########.fr       */
+/*   Created: 2022/04/09 01:54:32 by hjrifi            #+#    #+#             */
+/*   Updated: 2022/04/15 07:23:30 by hjrifi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../header.h"
+#include "header_bonus.h"
 
-void	ft_error(char *str)
+int	main(int ac, char **av)
 {
-	int		i;
-	
-	i = ft_strlen(str);
-	write(1, "Error\n", 7);
-	write(2, str, i);
-	exit(1);
-}
+	int		fd;
+	t_list	*data_map;
 
-/* --------------- */
-int	ft_bye(char *ptr)
-{
-	write(1, ptr, ft_strlen(ptr));
-	exit(0);
+	data_map = malloc(sizeof(t_list));
+	fd = open(av[1], O_RDWR);
+	ft_split(fd, &data_map);
+	fd = open(av[1], O_RDWR);
+	check_arg(ac, fd, data_map->size_height);
+	check_type_map(av[1], fd);
+	fd = open(av[1], O_RDWR);
+	create_map(fd, data_map);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 21:58:12 by hjrifi            #+#    #+#             */
-/*   Updated: 2022/04/15 01:56:00 by hjrifi           ###   ########.fr       */
+/*   Updated: 2022/04/15 02:23:32 by hjrifi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	check_type_map(char *name_map, int fd)
 		k++;
 	if (tab[j] != '\0')
 	{
-		ft_error(4, "cheack type file map\n");
+		ft_error("cheack type file map\n");
 		free (tab);
 		return ;
 	}
@@ -60,11 +60,11 @@ void	check_arg(int ac, int fd, int line_map)
 	i = 0;
 	n_check = 0;
 	if (ac == 1)
-		ft_error(1, "add map \n");
+		ft_error("add map \n");
 	else if (ac > 2)
-		ft_error(2, "you should insert just map \n");
+		ft_error("you should insert just map \n");
 	else if (fd < 0)
-		ft_error(3, "can't read map\n");
+		ft_error("can't read map\n");
 	check_map(fd, line_map, n_check, i);
 }
 

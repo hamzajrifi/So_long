@@ -6,11 +6,12 @@
 /*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 19:14:42 by hjrifi            #+#    #+#             */
-/*   Updated: 2022/04/15 01:51:09 by hjrifi           ###   ########.fr       */
+/*   Updated: 2022/04/15 02:26:51 by hjrifi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header.h"
+
 long	ft_strlen(const char *str)
 {
 	long	i;

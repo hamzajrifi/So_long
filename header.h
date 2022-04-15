@@ -1,10 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   header.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/15 02:27:46 by hjrifi            #+#    #+#             */
+/*   Updated: 2022/04/15 02:28:58 by hjrifi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef HEADER_H
 # define HEADER_H
 
-#include <unistd.h>
-#include <stdio.h>
-#include <mlx.h>
-#include <stdlib.h>
+# include <unistd.h>
+# include <mlx.h>
+# include <stdlib.h>
 # include <fcntl.h>
 
 typedef struct n_list
@@ -21,7 +32,6 @@ typedef struct n_list
 	int		x;
 	int		y;
 }	t_list;
-
 
 typedef struct t_path
 {
@@ -53,9 +63,9 @@ typedef struct t_path
 
 typedef struct all_list
 {
-	t_list *map;
-	t_path data;
-}	all_list;
+	t_list	*map;
+	t_path	data;
+}		t_all_list;
 
 char	*get_next_line(int fd);
 void	free_mytab(char	**str);
@@ -69,11 +79,9 @@ void	check_arg(int ac, int fd, int line_map);
 void	create_map(int fd, t_list *map);
 void	check_type_map(char *name_map, int fd);
 void	ft_split(int fd, t_list **data_map);
-void	ft_error(int n_error, char *str);
+void	ft_error(char *str);
 void	ft_putnbr(long nbr);
 void	check_map(int fd, int line_map, int n_check, int i);
 int		check_character(char *ptr);
-// ---  ----- -----  graphiaue ------- -- --- ------ //
 void	check_charactire(t_list *map, t_path data, int y, int x);
-// void	put_images_in_wind(t_list *map, t_path data);
 #endif

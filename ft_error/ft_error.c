@@ -6,17 +6,16 @@
 /*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 21:26:25 by hjrifi            #+#    #+#             */
-/*   Updated: 2022/04/15 01:57:58 by hjrifi           ###   ########.fr       */
+/*   Updated: 2022/04/15 02:22:56 by hjrifi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header.h"
 
-void	ft_error(int n_error, char *str)
+void	ft_error(char *str)
 {
 	int		i;
-	(void)	n_error;
-	
+
 	i = ft_strlen(str);
 	write(2, str, i);
 	exit(1);

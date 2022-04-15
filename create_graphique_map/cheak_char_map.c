@@ -6,216 +6,227 @@
 /*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 17:19:19 by hjrifi            #+#    #+#             */
-/*   Updated: 2022/04/15 01:54:55 by hjrifi           ###   ########.fr       */
+/*   Updated: 2022/04/15 03:09:33 by hjrifi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header.h"
 
 /** ** --------------- check_wall --------------- **/
-int	check_coin(all_list *all, int y, int x)
+int	check_coin(t_all_list *all, int y, int x)
 {
 	if (all->map->map[y][x] == 'C')
 	{
 		all->map->n_coin -= 1;
-		mlx_put_image_to_window(all->data.mlx_ptr, all->data.win_ptr, all->data.img_floor, x * 50, y * 50);
+		mlx_put_image_to_window(all->data.mlx_ptr, all->data.win_ptr,
+			all->data.img_floor, x * 50, y * 50);
 	}
 	else if (all->map->map[y][x] == 'E' && !(all->map->n_coin))
-	{
 		exit(0);
-	}
-	return 1;
+	return (1);
 }
 
 /*** ----------------- move player left ---------------- */
-int	move_player_left(all_list *all)
+int	move_player_left(t_all_list *all, int x, int y)
 {
-	all->map->y = 0;
-	while (all->map->map[all->map->y] && all->map->size_height > all->map->y)
+	while (all->map->map[y] && all->map->size_height > y)
 	{
-		all->map->x = 0;
-		while (all->map->map[all->map->y][all->map->x] != 'P' && 
-			all->map->size_with > all->map->x)
-			all->map->x++;
-		if (all->map->size_with > all->map->x && all->map->map[all->map->y][all->map->x - 1] == 'E')
-			check_coin(all, all->map->y, all->map->x - 1);
-		if (all->map->map[all->map->y][all->map->x] == 'P' 
-		&& all->map->map[all->map->y][all->map->x - 1] != '1'
-		&& all->map->map[all->map->y][all->map->x - 1] != 'E')
+		x = 0;
+		while (all->map->map[y][x] != 'P' && all->map->size_with > x)
+			x++;
+		if (all->map->size_with > x && all->map->map[y][x - 1] == 'E')
+			check_coin(all, y, x - 1);
+		if (all->map->map[y][x] == 'P' && all->map->map[y][x - 1] != '1'
+			&& all->map->map[y][x - 1] != 'E')
 		{
-			check_coin(all, all->map->y, all->map->x - 1);
-			all->map->map[all->map->y][all->map->x] = '0';
-			mlx_put_image_to_window(all->data.mlx_ptr, all->data.win_ptr, 
-			all->data.img_floor, all->map->x * 50, all->map->y * 50);
-			all->map->map[all->map->y][all->map->x - 1] = 'P';
+			check_coin(all, y, x - 1);
+			all->map->map[y][x] = '0';
 			mlx_put_image_to_window(all->data.mlx_ptr, all->data.win_ptr,
-			all->data.img_player, (all->map->x - 1) * 50, all->map->y * 50);
+				all->data.img_floor, x * 50, y * 50);
+			all->map->map[y][x - 1] = 'P';
+			mlx_put_image_to_window(all->data.mlx_ptr, all->data.win_ptr,
+				all->data.img_player, (x - 1) * 50, y * 50);
 			return (1);
 		}
-		all->map->y++;
+		y++;
 	}
 	return (0);
 }
 
 /*** ----------------- move player right ---------------- */
-int	move_player_right(all_list *all)
+int	move_player_right(t_all_list *all, int x, int y)
 {
-	all->map->y = 0;
-	while (all->map->map[all->map->y] && all->map->size_height > all->map->y)
+	while (all->map->map[y] && all->map->size_height > y)
 	{
-		all->map->x = 0;
-		while (all->map->map[all->map->y][all->map->x] != 'P' && all->map->size_with > all->map->x)
-			all->map->x++;
-		if (all->map->size_with > all->map->x && all->map->map[all->map->y][all->map->x + 1] == 'E')
-			check_coin(all, all->map->y, all->map->x + 1);
-		if (all->map->map[all->map->y][all->map->x] == 'P' && all->map->map[all->map->y][all->map->x + 1] != '1' && all->map->map[all->map->y][all->map->x + 1] != 'E')
+		x = 0;
+		while (all->map->map[y][x] != 'P' && all->map->size_with > x)
+			x++;
+		if (all->map->size_with > x && all->map->map[y][x + 1] == 'E')
+			check_coin(all, y, x + 1);
+		if (all->map->map[y][x] == 'P' && all->map->map[y][x + 1] != '1'
+			&& all->map->map[y][x + 1] != 'E')
 		{
-			check_coin(all, all->map->y, all->map->x + 1);
-			
-			all->map->map[all->map->y][all->map->x] = '0';
-			all->map->map[all->map->y][all->map->x + 1] = 'P';
-			mlx_put_image_to_window(all->data.mlx_ptr, all->data.win_ptr, all->data.img_floor, all->map->x * 50, all->map->y * 50);
-			mlx_put_image_to_window(all->data.mlx_ptr, all->data.win_ptr, all->data.img_player, (all->map->x + 1) * 50, all->map->y * 50);
+			check_coin(all, y, x + 1);
+			all->map->map[y][x] = '0';
+			all->map->map[y][x + 1] = 'P';
+			mlx_put_image_to_window(all->data.mlx_ptr, all->data.win_ptr,
+				all->data.img_floor, x * 50, y * 50);
+			mlx_put_image_to_window(all->data.mlx_ptr, all->data.win_ptr,
+				all->data.img_player, (x + 1) * 50, y * 50);
 			return (1);
 		}
-		all->map->y++;
+		y++;
 	}
 	return (0);
 }
 
 /*** ----------------- move player down ---------------- */
-int	move_player_down(all_list *all)
+int	move_player_down(t_all_list *all, int x, int y)
 {
-	all->map->y = 0;
-	while (all->map->map[all->map->y] && all->map->size_height > all->map->y)
+	while (all->map->map[y] && all->map->size_height > y)
 	{
-		all->map->x = 0;
-		while (all->map->map[all->map->y][all->map->x] != 'P' && all->map->size_with > all->map->x)
-			all->map->x++;
-		if (all->map->size_with > all->map->x && all->map->map[all->map->y + 1][all->map->x] == 'E')
-			check_coin(all, all->map->y + 1, all->map->x);
-		if (all->map->map[all->map->y][all->map->x] == 'P' && all->map->map[all->map->y + 1][all->map->x] != '1' && all->map->map[all->map->y + 1][all->map->x] != 'E')
+		x = 0;
+		while (all->map->map[y][x] != 'P' && all->map->size_with > x)
+			x++;
+		if (all->map->size_with > x && all->map->map[y + 1][x] == 'E')
+			check_coin(all, y + 1, x);
+		if (all->map->map[y][x] == 'P' && all->map->map[y + 1][x] != '1'
+			&& all->map->map[y + 1][x] != 'E')
 		{
-			check_coin(all, all->map->y + 1, all->map->x);
-			all->map->map[all->map->y][all->map->x] = '0';
-			all->map->map[all->map->y + 1][all->map->x] = 'P';
-			mlx_put_image_to_window(all->data.mlx_ptr, all->data.win_ptr, all->data.img_floor, all->map->x * 50, all->map->y * 50);
-			mlx_put_image_to_window(all->data.mlx_ptr, all->data.win_ptr, all->data.img_player, all->map->x * 50, (all->map->y + 1) * 50);
+			check_coin(all, y + 1, x);
+			all->map->map[y][x] = '0';
+			all->map->map[y + 1][x] = 'P';
+			mlx_put_image_to_window(all->data.mlx_ptr, all->data.win_ptr,
+				all->data.img_floor, x * 50, y * 50);
+			mlx_put_image_to_window(all->data.mlx_ptr, all->data.win_ptr,
+				all->data.img_player, x * 50, (y + 1) * 50);
 			return (1);
 		}
-		all->map->y++;
+		y++;
 	}
 	return (0);
 }
 
-
 /*** ----------------- move player up ---------------- */
-int	move_player_up(all_list *all)
+int	move_player_up(t_all_list *all, int x, int y)
 {
-	all->map->y = 0;
-	while (all->map->map[all->map->y] && all->map->size_height > all->map->y)
+	while (all->map->map[y] && all->map->size_height > y)
 	{
-		all->map->x = 0;
-		while (all->map->map[all->map->y][all->map->x] != 'P' && all->map->size_with > all->map->x )
-			all->map->x++;
-		if (all->map->size_with > all->map->x && all->map->map[all->map->y - 1][all->map->x] == 'E')
-			check_coin(all, all->map->y - 1, all->map->x);
-		if (all->map->map[all->map->y][all->map->x] == 'P' && all->map->map[all->map->y - 1][all->map->x] != '1' && all->map->map[all->map->y - 1][all->map->x] != 'E')
+		x = 0;
+		while (all->map->map[y][x] != 'P' && all->map->size_with > x)
+			x++;
+		if (all->map->size_with > x && all->map->map[y - 1][x] == 'E')
+			check_coin(all, y - 1, x);
+		if (all->map->map[y][x] == 'P' && all->map->map[y - 1][x] != '1'
+			&& all->map->map[y - 1][x] != 'E')
 		{
-			check_coin(all, all->map->y - 1, all->map->x);
-			
-			all->map->map[all->map->y][all->map->x] = '0';
-			all->map->map[all->map->y - 1][all->map->x] = 'P';
-			mlx_put_image_to_window(all->data.mlx_ptr, all->data.win_ptr, all->data.img_floor, all->map->x * 50, (all->map->y) * 50);
-			mlx_put_image_to_window(all->data.mlx_ptr, all->data.win_ptr, all->data.img_player, all->map->x * 50, (all->map->y - 1) * 50);
+			check_coin(all, y - 1, x);
+			all->map->map[y][x] = '0';
+			all->map->map[y - 1][x] = 'P';
+			mlx_put_image_to_window(all->data.mlx_ptr, all->data.win_ptr,
+				all->data.img_floor, x * 50, (y) * 50);
+			mlx_put_image_to_window(all->data.mlx_ptr, all->data.win_ptr,
+				all->data.img_player, x * 50, (y - 1) * 50);
 			return (1);
 		}
-		all->map->y++;
+		y++;
 	}
 	return (0);
 }
 
 /*** ----------------- function read movement ---------------- */
-int	myF(int key, all_list *all)
+int	myf(int key, t_all_list *all)
 {
 	static long	n;
-	long long	i;
-	
-	i = 0;
-	if (key == 0) // <== 
-		i += move_player_left(all);
-	else if ( key == 2) // =>
-		i += move_player_right(all);
-	else if (key == 1) // \\/
-		i += move_player_down(all);
-	else if (key == 13) // __ ^ __
-		i += move_player_up(all);
+	long long	n_move;
+	int			x;
+	int			y;
+
+	y = 0;
+	x = 0;
+	n_move = 0;
+	if (key == 0)
+		n_move += move_player_left(all, x, y);
+	else if (key == 2)
+		n_move += move_player_right(all, x, y);
+	else if (key == 1)
+		n_move += move_player_down(all, x, y);
+	else if (key == 13)
+		n_move += move_player_up(all, x, y);
 	else if (key == 53)
 		exit(0);
-	if (i == 1)
+	if (n_move == 1)
 	{
-		n += i;
+		n += n_move;
 		ft_putnbr(n);
 		write(1, "\n", 1);
 	}
-	return n;
+	return (n);
 }
 
 /* ------------ check charactire  ------------------------ */
 void	check_charactire(t_list *map, t_path data, int y, int x)
 {
-	if ((x == 0 && y == 0) || (x == map->size_with - 1 && y == 
-	map->size_height - 1) || (y == 0 && x == map->size_with - 1) || (y == map->size_height - 1 && x == 0))
-	{
-		mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img_corner, map->x, map->y);
-	}
+	if ((x == 0 && y == 0) || (x == map->size_with - 1
+			&& y == map->size_height - 1) || (y == 0 && x == map->size_with - 1)
+		|| (y == map->size_height - 1 && x == 0))
+		mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img_corner,
+			map->x, map->y);
 	else if (x == map->size_with - 1)
-		mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img_right, map->x, map->y);
+		mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img_right,
+			map->x, map->y);
 	else if (x == 0)
-		mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img_left, map->x, map->y);
+		mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img_left,
+			map->x, map->y);
 	else if (y == 0)
-		mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img_up, map->x, map->y);
+		mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img_up,
+			map->x, map->y);
 	else if (y == map->size_height - 1)
-		mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img_down, map->x, map->y);
+		mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img_down,
+			map->x, map->y);
 	else if (map->map[y][x] == '1' )
-		mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img_wall_center, map->x, map->y);
+		mlx_put_image_to_window(data.mlx_ptr, data.win_ptr,
+			data.img_wall_center, map->x, map->y);
 	else if (map->map[y][x] == 'C')
-		mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img_coin, map->x, map->y);
+		mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img_coin,
+			map->x, map->y);
 	if (map->map[y][x] == 'E')
-		mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img_hole, map->x, map->y);
+		mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img_hole,
+			map->x, map->y);
 	if (map->map[y][x] == 'P')
-		mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img_player, map->x, map->y);
+		mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img_player,
+			map->x, map->y);
 }
 
 /* -------------- function put images in window -------------- */
 void	put_images_in_wind(t_list *map, t_path data)
 {
-	int 		y;
-	int 		x;
-	all_list	*all;
-	
-	all = malloc(sizeof(all_list));
+	int			y;
+	int			x;
+	t_all_list	*all;
+
+	all = malloc(sizeof(t_all_list));
 	all->map = map;
 	all->data = data;
 	y = 0;
-	map->y = 0; // y
+	map->y = 0;
 	map->size_with = map->size_with - 1;
 	while (y < map->size_height)
 	{
-		map->x = 0; // x
+		map->x = 0;
 		x = 0;
 		while (x < map->size_with)
 		{
-			mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img_floor, map->x, map->y);
+			mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img_floor,
+				map->x, map->y);
 			check_charactire(map, data, y, x);
 			map->x += 50;
 			x++;
 		}
-		//write(1, "\n", 2);
 		map->y += 50;
 		y++;
 	}
-	mlx_key_hook(data.win_ptr, myF, all);
+	mlx_key_hook(data.win_ptr, myf, all);
 	mlx_loop(data.mlx_ptr);
 }
 
@@ -223,7 +234,7 @@ void	put_images_in_wind(t_list *map, t_path data)
 void	path_image(t_list *map)
 {
 	t_path	data;
-	
+
 	data.path_floor = "./img/floor.xpm";
 	data.path_up = "./img/wall_up.xpm";
 	data.path_down = "./img/wall_down.xpm";
@@ -246,7 +257,6 @@ void	path_image(t_list *map)
 	data.img_player = mlx_xpm_file_to_image(data.mlx_ptr, data.path_player, &(data.img_width), &(data.img_height));
 	data.img_coin = mlx_xpm_file_to_image(data.mlx_ptr, data.path_coin, &(data.img_width), &(data.img_height));
 	data.img_wall_center = mlx_xpm_file_to_image(data.mlx_ptr, data.path_wall_center, &(data.img_width), &(data.img_height));
-	
 	put_images_in_wind(map, data);
 }
 
@@ -255,7 +265,7 @@ void	index_exit(t_list *map, int n)
 {
 	int	y;
 	int	x;
-	int i;
+	int	i;
 
 	i = 0;
 	y = 0;
@@ -269,7 +279,7 @@ void	index_exit(t_list *map, int n)
 			if (map->map[y][x] == 'E')
 			{
 				map->x_exit[i] = x;
-				map->y_exit[i++] =  y;
+				map->y_exit[i++] = y;
 			}
 			x++;
 		}
@@ -302,7 +312,7 @@ int	ft_calcul_coin(t_list *map)
 		y++;
 	}
 	index_exit(map, n);
-	return(n);
+	return (n);
 }
 
 /* ------------- create map --------------- */
@@ -322,5 +332,4 @@ void	create_map(int fd, t_list *map)
 	map->map[i] = NULL;
 	ft_calcul_coin(map);
 	path_image(map);
-	//free(ptr);
 }

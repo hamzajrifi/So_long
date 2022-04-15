@@ -6,14 +6,14 @@
 /*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 19:14:42 by hjrifi            #+#    #+#             */
-/*   Updated: 2022/04/10 00:27:09 by hjrifi           ###   ########.fr       */
+/*   Updated: 2022/04/15 01:51:09 by hjrifi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header.h"
-size_t	ft_strlen(const char *str)
+long	ft_strlen(const char *str)
 {
-	size_t	i;
+	long	i;
 
 	i = 0 ;
 	if (!str)

@@ -61,7 +61,7 @@ char	*get_next_line(int fd);
 void	free_mytab(char	**str);
 char	*ft_strjoin(char *s1, char *s2);
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
-size_t	ft_strlen(const char *str);
+long	ft_strlen(const char *str);
 char	*ft_strdup(char *s1);
 char	*ft_strchr(char *s, int c);
 char	*ft_substr(char *s, int start, int len);
@@ -71,7 +71,7 @@ void	check_type_map(char *name_map, int fd);
 void	ft_split(int fd, t_list **data_map);
 void	ft_error(int n_error, char *str);
 void	ft_putnbr(long nbr);
-void	check_map(int fd, int line_map);
+void	check_map(int fd, int line_map, int n_check, int i);
 int		check_character(char *ptr);
 // ---  ----- -----  graphiaue ------- -- --- ------ //
 void	check_charactire(t_list *map, t_path data, int y, int x);

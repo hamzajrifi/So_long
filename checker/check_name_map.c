@@ -6,7 +6,7 @@
 /*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 21:58:12 by hjrifi            #+#    #+#             */
-/*   Updated: 2022/04/15 01:33:52 by hjrifi           ###   ########.fr       */
+/*   Updated: 2022/04/15 01:56:00 by hjrifi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,18 @@ void	ft_putnbr(long nbr)
 //--------  check argiment ---------/
 void	check_arg(int ac, int fd, int line_map)
 {
-	t_list	*ptr;
+	int		i;
+	int		n_check;
 
+	i = 0;
+	n_check = 0;
 	if (ac == 1)
 		ft_error(1, "add map \n");
 	else if (ac > 2)
 		ft_error(2, "you should insert just map \n");
 	else if (fd < 0)
 		ft_error(3, "can't read map\n");
-	check_map(fd, line_map);
+	check_map(fd, line_map, n_check, i);
 }
 
 //*---------- check if any other character in map ------------/

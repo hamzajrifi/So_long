@@ -6,7 +6,7 @@
 /*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 00:22:45 by hjrifi            #+#    #+#             */
-/*   Updated: 2022/04/15 01:34:55 by hjrifi           ###   ########.fr       */
+/*   Updated: 2022/04/15 01:44:54 by hjrifi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,18 +93,14 @@ void	check_p_c(char *ptr, int n)
 }
 
 //--------  check map ---------/
-void	check_map(int fd, int line_map)
+void	check_map(int fd, int line_map, int n_check, int i)
 {
 	char	*ptr;
-	int		i;
 	int		size_line;
-	int		n_check;
 	char	*temp;
 
 	ptr = get_next_line(fd);
-	i = 0;
 	size_line = ft_strlen(ptr);
-	n_check = 0;
 	while (n_check == 0)
 	{
 		if (ptr)

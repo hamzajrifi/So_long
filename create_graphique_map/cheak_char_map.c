@@ -6,12 +6,11 @@
 /*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 17:19:19 by hjrifi            #+#    #+#             */
-/*   Updated: 2022/04/15 01:25:27 by hjrifi           ###   ########.fr       */
+/*   Updated: 2022/04/15 01:54:55 by hjrifi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header.h"
-
 
 /** ** --------------- check_wall --------------- **/
 int	check_coin(all_list *all, int y, int x)
@@ -20,7 +19,6 @@ int	check_coin(all_list *all, int y, int x)
 	{
 		all->map->n_coin -= 1;
 		mlx_put_image_to_window(all->data.mlx_ptr, all->data.win_ptr, all->data.img_floor, x * 50, y * 50);
-		
 	}
 	else if (all->map->map[y][x] == 'E' && !(all->map->n_coin))
 	{
@@ -29,10 +27,6 @@ int	check_coin(all_list *all, int y, int x)
 	return 1;
 }
 
-void	ft_exit(all_list *all, int y, int x)
-{
-	
-}
 /*** ----------------- move player left ---------------- */
 int	move_player_left(all_list *all)
 {

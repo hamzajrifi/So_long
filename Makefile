@@ -27,10 +27,10 @@ O_FILES =	get_next_line_utils.o \
 			so_long.o
 
 
-all :
-	$(CC) -c $(C_FILES) 
-	ar -rc $(NAME) $(O_FILES)
-	$(CC) $(FLAG_MLX)  -o So_long So_long.c $(NAME)
+all : 
+			$(CC) $(C_FLAG) -c $(C_FILES) 
+			ar -rc $(NAME) $(O_FILES)
+			$(CC) $(C_FLAG) $(FLAG_MLX)  -o So_long So_long.c $(NAME)
 
 clean : 
 	rm -f so_long.a *.o

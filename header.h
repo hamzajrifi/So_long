@@ -6,7 +6,7 @@
 /*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 02:27:46 by hjrifi            #+#    #+#             */
-/*   Updated: 2022/04/15 02:28:58 by hjrifi           ###   ########.fr       */
+/*   Updated: 2022/04/15 06:10:43 by hjrifi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,8 @@ void	ft_putnbr(long nbr);
 void	check_map(int fd, int line_map, int n_check, int i);
 int		check_character(char *ptr);
 void	check_charactire(t_list *map, t_path data, int y, int x);
+int		myf(int key, t_all_list *all);
+int		check_coin(t_all_list *all, int y, int x);
+int		ft_bye(char *ptr);
+void	path_image(t_list *map);
 #endif

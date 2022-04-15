@@ -6,7 +6,7 @@
 /*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 21:26:25 by hjrifi            #+#    #+#             */
-/*   Updated: 2022/04/15 02:22:56 by hjrifi           ###   ########.fr       */
+/*   Updated: 2022/04/15 06:06:09 by hjrifi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,11 @@ void	ft_error(char *str)
 	i = ft_strlen(str);
 	write(2, str, i);
 	exit(1);
+}
+
+/* --------------- */
+int	ft_bye(char *ptr)
+{
+	write(1, ptr, ft_strlen(ptr));
+	exit(0);
 }

@@ -15,6 +15,8 @@ C_FILES =	./get_next_line/get_next_line_utils.c \
 			./checker/check_name_map.c \
 			./checker/ft_split.c  \
 			./ft_error/ft_error.c \
+			./create_graphique_map/function_move.c \
+			./create_graphique_map/check_char_map_2.c \
 			./so_long.c
 
 # O_FILES =	get_next_line_utils.o \

@@ -6,7 +6,7 @@
 /*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 00:22:45 by hjrifi            #+#    #+#             */
-/*   Updated: 2022/04/14 02:31:51 by hjrifi           ###   ########.fr       */
+/*   Updated: 2022/04/15 01:34:55 by hjrifi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,44 +20,16 @@ int	check_one_up_down(char *ptr, int k, int size_line)
 	i = 0;
 	while (ptr[i] == '1')
 		i++;
-	if (((k > 0 && ptr[i] != '\0') && (k > 0 && ptr[i] != '\n')) ||
-		(size_line != i + 1 && k > 0))
+	if (((k > 0 && ptr[i] != '\0') && (k > 0 && ptr[i] != '\n'))
+		|| (size_line != i + 1 && k > 0))
 	{
-		ft_error(3,"don't have one in last line\n");
+		ft_error(3, "don't have one in last line\n");
 	}
 	if (ptr[i] != '\n' && k == 0)
 	{
-		ft_error(3,"don't have one in first line\n");
+		ft_error(3, "don't have one in first line\n");
 	}
 	return (ft_strlen(ptr));
-}
-
-//*---------- check if any other character in map ------------/
-int	check_character(char *ptr)
-{
-	int		i;
-	int		j;
-	char	*cha_map;
-	int		n;
-
-	cha_map = ft_strdup("1ECP0");
-	i = 0;
-	while (ptr[i] && ptr[i] != '\n')
-	{
-		n = 0;
-		j = 0;
-		while (cha_map[j])
-		{
-			if (cha_map[j] == ptr[i])
-				n++;
-			j++;
-		}
-		if (n == 0)
-			return (1);
-		i++;
-	}
-	free(cha_map);
-	return (0);
 }
 
 //--------  check caracter if 1 in left and right ---------/
@@ -74,12 +46,12 @@ int	check_one_left_right(char *ptr, int size_line, int n_map)
 	{
 		size_line -= 1;
 		if (ptr[0] != '1' || ptr[ft_strlen(ptr) - 1] != '1')
-			ft_error(3,"wall left or right it's wrong 1\n");
+			ft_error(3, "wall left or right it's wrong 1\n");
 	}	
 	if (size_line != ft_strlen(ptr) || check_character(ptr) == 1)
-		{
-			ft_error(3, "wall it's wrong 2 \n");
-		}
+	{
+		ft_error(3, "wall it's wrong 2 \n");
+	}
 	while ((ptr[++i] != '\n' && ptr[i]))
 	{
 		if (ptr[0] != '1')
@@ -130,7 +102,6 @@ void	check_map(int fd, int line_map)
 	char	*temp;
 
 	ptr = get_next_line(fd);
-	
 	i = 0;
 	size_line = ft_strlen(ptr);
 	n_check = 0;
@@ -152,18 +123,4 @@ void	check_map(int fd, int line_map)
 		i++;
 	}
 	free(ptr);
-}
-
-//--------  check argiment ---------/
-void	check_arg(int ac, int fd, int line_map)
-{
-	t_list	*ptr;
-
-	if (ac == 1)
-		ft_error(1, "add map \n");
-	else if (ac > 2)
-		ft_error(2, "you should insert just map \n");
-	else if (fd < 0)
-		ft_error(3, "can't read map\n");
-	check_map(fd, line_map);
 }

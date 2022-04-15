@@ -6,24 +6,18 @@
 /*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 17:19:19 by hjrifi            #+#    #+#             */
-/*   Updated: 2022/04/14 09:14:03 by hjrifi           ###   ########.fr       */
+/*   Updated: 2022/04/15 01:25:27 by hjrifi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header.h"
 
-/** ----------------- ft_hole ----------------- **/
-void	ft_hole(all_list *all, int y, int x)
-{
-		
-}
 
 /** ** --------------- check_wall --------------- **/
 int	check_coin(all_list *all, int y, int x)
 {
 	if (all->map->map[y][x] == 'C')
 	{
-		printf("n_coin = %d\n", all->map->n_coin);
 		all->map->n_coin -= 1;
 		mlx_put_image_to_window(all->data.mlx_ptr, all->data.win_ptr, all->data.img_floor, x * 50, y * 50);
 		
@@ -35,6 +29,10 @@ int	check_coin(all_list *all, int y, int x)
 	return 1;
 }
 
+void	ft_exit(all_list *all, int y, int x)
+{
+	
+}
 /*** ----------------- move player left ---------------- */
 int	move_player_left(all_list *all)
 {
@@ -45,8 +43,11 @@ int	move_player_left(all_list *all)
 		while (all->map->map[all->map->y][all->map->x] != 'P' && 
 			all->map->size_with > all->map->x)
 			all->map->x++;
+		if (all->map->size_with > all->map->x && all->map->map[all->map->y][all->map->x - 1] == 'E')
+			check_coin(all, all->map->y, all->map->x - 1);
 		if (all->map->map[all->map->y][all->map->x] == 'P' 
-		&& all->map->map[all->map->y][all->map->x - 1] != '1')
+		&& all->map->map[all->map->y][all->map->x - 1] != '1'
+		&& all->map->map[all->map->y][all->map->x - 1] != 'E')
 		{
 			check_coin(all, all->map->y, all->map->x - 1);
 			all->map->map[all->map->y][all->map->x] = '0';
@@ -71,14 +72,12 @@ int	move_player_right(all_list *all)
 		all->map->x = 0;
 		while (all->map->map[all->map->y][all->map->x] != 'P' && all->map->size_with > all->map->x)
 			all->map->x++;
-		//if (all->map->map[all->map->y][all->map->x + 1] == 'E')
-		//{
-		//	ft_hole(all, all->map->y, all->map->x);
-		//	return (1);
-		//}
-		if (all->map->map[all->map->y][all->map->x] == 'P' && all->map->map[all->map->y][all->map->x + 1] != '1')
+		if (all->map->size_with > all->map->x && all->map->map[all->map->y][all->map->x + 1] == 'E')
+			check_coin(all, all->map->y, all->map->x + 1);
+		if (all->map->map[all->map->y][all->map->x] == 'P' && all->map->map[all->map->y][all->map->x + 1] != '1' && all->map->map[all->map->y][all->map->x + 1] != 'E')
 		{
 			check_coin(all, all->map->y, all->map->x + 1);
+			
 			all->map->map[all->map->y][all->map->x] = '0';
 			all->map->map[all->map->y][all->map->x + 1] = 'P';
 			mlx_put_image_to_window(all->data.mlx_ptr, all->data.win_ptr, all->data.img_floor, all->map->x * 50, all->map->y * 50);
@@ -99,7 +98,9 @@ int	move_player_down(all_list *all)
 		all->map->x = 0;
 		while (all->map->map[all->map->y][all->map->x] != 'P' && all->map->size_with > all->map->x)
 			all->map->x++;
-		if (all->map->map[all->map->y][all->map->x] == 'P'&& all->map->map[all->map->y + 1][all->map->x] != '1')
+		if (all->map->size_with > all->map->x && all->map->map[all->map->y + 1][all->map->x] == 'E')
+			check_coin(all, all->map->y + 1, all->map->x);
+		if (all->map->map[all->map->y][all->map->x] == 'P' && all->map->map[all->map->y + 1][all->map->x] != '1' && all->map->map[all->map->y + 1][all->map->x] != 'E')
 		{
 			check_coin(all, all->map->y + 1, all->map->x);
 			all->map->map[all->map->y][all->map->x] = '0';
@@ -113,6 +114,7 @@ int	move_player_down(all_list *all)
 	return (0);
 }
 
+
 /*** ----------------- move player up ---------------- */
 int	move_player_up(all_list *all)
 {
@@ -122,12 +124,15 @@ int	move_player_up(all_list *all)
 		all->map->x = 0;
 		while (all->map->map[all->map->y][all->map->x] != 'P' && all->map->size_with > all->map->x )
 			all->map->x++;
-		if (all->map->map[all->map->y][all->map->x] == 'P' && all->map->map[all->map->y - 1][all->map->x] != '1')
+		if (all->map->size_with > all->map->x && all->map->map[all->map->y - 1][all->map->x] == 'E')
+			check_coin(all, all->map->y - 1, all->map->x);
+		if (all->map->map[all->map->y][all->map->x] == 'P' && all->map->map[all->map->y - 1][all->map->x] != '1' && all->map->map[all->map->y - 1][all->map->x] != 'E')
 		{
 			check_coin(all, all->map->y - 1, all->map->x);
+			
 			all->map->map[all->map->y][all->map->x] = '0';
 			all->map->map[all->map->y - 1][all->map->x] = 'P';
-			mlx_put_image_to_window(all->data.mlx_ptr, all->data.win_ptr, all->data.img_floor, all->map->x * 50, all->map->y * 50);
+			mlx_put_image_to_window(all->data.mlx_ptr, all->data.win_ptr, all->data.img_floor, all->map->x * 50, (all->map->y) * 50);
 			mlx_put_image_to_window(all->data.mlx_ptr, all->data.win_ptr, all->data.img_player, all->map->x * 50, (all->map->y - 1) * 50);
 			return (1);
 		}
@@ -251,20 +256,46 @@ void	path_image(t_list *map)
 	put_images_in_wind(map, data);
 }
 
+/* -------------- put index door exit in arrary --------*/
+void	index_exit(t_list *map, int n)
+{
+	int	y;
+	int	x;
+	int i;
+
+	i = 0;
+	y = 0;
+	map->x_exit = malloc(sizeof(int) * n);
+	map->y_exit = malloc(sizeof(int) * n);
+	while (y < map->size_height)
+	{
+		x = 0;
+		while (x < map->size_with)
+		{
+			if (map->map[y][x] == 'E')
+			{
+				map->x_exit[i] = x;
+				map->y_exit[i++] =  y;
+			}
+			x++;
+		}
+		y++;
+	}	
+}
+
 /** -------------- function calcul coin --------------*/
 int	ft_calcul_coin(t_list *map)
 {
 	int	n;
 	int	y;
 	int	x;
-	
+
 	y = 0;
 	n = 0;
 	map->n_coin = 0;
 	map->n_hole = 0;
 	while (y < map->size_height)
 	{
-		map->x = 0; // x
 		x = 0;
 		while (x < map->size_with)
 		{
@@ -276,6 +307,7 @@ int	ft_calcul_coin(t_list *map)
 		}
 		y++;
 	}
+	index_exit(map, n);
 	return(n);
 }
 

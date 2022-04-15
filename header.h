@@ -16,9 +16,12 @@ typedef struct n_list
 	int		size_with;
 	int		n_coin;
 	int		n_hole;
+	int		*x_exit;
+	int		*y_exit;
 	int		x;
 	int		y;
 }	t_list;
+
 
 typedef struct t_path
 {
@@ -68,6 +71,8 @@ void	check_type_map(char *name_map, int fd);
 void	ft_split(int fd, t_list **data_map);
 void	ft_error(int n_error, char *str);
 void	ft_putnbr(long nbr);
+void	check_map(int fd, int line_map);
+int		check_character(char *ptr);
 // ---  ----- -----  graphiaue ------- -- --- ------ //
 void	check_charactire(t_list *map, t_path data, int y, int x);
 // void	put_images_in_wind(t_list *map, t_path data);

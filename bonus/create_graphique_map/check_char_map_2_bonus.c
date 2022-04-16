@@ -6,7 +6,7 @@
 /*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 05:59:32 by hjrifi            #+#    #+#             */
-/*   Updated: 2022/04/15 10:05:09 by hjrifi           ###   ########.fr       */
+/*   Updated: 2022/04/15 22:15:27 by hjrifi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,24 +31,29 @@ int	check_coin(t_all_list *all, int y, int x)
 /* -------------- put index door exit in arrary --------*/
 void	index_exit(t_list *map)
 {
-	int	y;
-	int	x;
-	int	i;
-	int	j;
+	int			y;
+	int			x;
+	int			i;
+	int			j;
+	static int	k;
 
 	i = 0;
 	j = 0;
 	y = 0;
-	map->x_exit = malloc(sizeof(int) * map->n_hole);
-	map->y_exit = malloc(sizeof(int) * map->n_hole);
-	map->x_enemy = malloc(sizeof(int) * map->n_enemy);
-	map->y_enemy = malloc(sizeof(int) * map->n_enemy);
+	if (k == 0)
+	{
+		map->x_exit = malloc(sizeof(int) * map->n_hole);
+		map->y_exit = malloc(sizeof(int) * map->n_hole);
+		map->x_enemy = malloc(sizeof(int) * map->n_enemy);
+		map->y_enemy = malloc(sizeof(int) * map->n_enemy);
+		k++;
+	}
 	while (y < map->size_height)
 	{
 		x = 0;
 		while (x < map->size_with)
 		{
-			if (map->map[y][x] == 'E')
+			if (map->map[y][x] == 'E' && k == 1)
 			{
 				map->x_exit[i] = x;
 				map->y_exit[i++] = y;

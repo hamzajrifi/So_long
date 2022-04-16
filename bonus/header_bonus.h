@@ -6,7 +6,7 @@
 /*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 02:27:46 by hjrifi            #+#    #+#             */
-/*   Updated: 2022/04/15 09:59:12 by hjrifi           ###   ########.fr       */
+/*   Updated: 2022/04/16 00:58:38 by hjrifi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct n_list
 	int		*x_enemy;
 	int		*y_enemy;
 	int		x;
-	int		y;
+	int		y;	
 }	t_list;
 
 typedef struct t_path
@@ -98,4 +98,5 @@ int		myf(int key, t_all_list *all);
 int		check_coin(t_all_list *all, int y, int x);
 int		ft_bye(char *ptr);
 void	path_image(t_list *map);
+void	index_exit(t_list *map);
 #endif

@@ -6,7 +6,7 @@
 /*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 17:19:19 by hjrifi            #+#    #+#             */
-/*   Updated: 2022/04/15 10:11:56 by hjrifi           ###   ########.fr       */
+/*   Updated: 2022/04/16 03:04:52 by hjrifi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,48 +30,97 @@ void	check_charactire_2(t_list *map, t_path data, int y, int x)
 	else if (map->map[y][x] == 'C')
 		mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img_coin,
 			map->x, map->y);
+	else if (map->map[y][x] == 'W')
+		mlx_put_image_to_window(data.mlx_ptr, data.win_ptr,
+			data.img_police_left, map->x, map->y);
 }
 
 /* ----------------- image loop -------------------*/
 int	ft_loop_img(t_all_list *all)
 {
-	static int	i;
-	int	j;
+	static int	i, z;
+	int	j, k;
 
 	j = all->map->n_enemy;
-	if (i == 8000 )
+	j = 0;
+	k = 0;
+	if (i == 6000 )
 	{
-		while (j >= 0)
+		while (j < all->map->n_enemy)
 		{
-			mlx_put_image_to_window(all->data.mlx_ptr, all->data.win_ptr,
+			if (all->map->map[all->map->y_enemy[j]][all->map->x_enemy[j] + 1] == 'P' && k == 1 )
+				exit(0);
+			if (all->map->map[all->map->y_enemy[j]][all->map->x_enemy[j] - 1] == 'P' && k == 2)
+				exit(0);
+			if (all->map->map[all->map->y_enemy[j]][all->map->x_enemy[j] + 1] == '0')
+			{
+				all->map->map[all->map->y_enemy[j]][all->map->x_enemy[j] + 1] = 'W';
+				all->map->map[all->map->y_enemy[j]][all->map->x_enemy[j]] = '0';
+				mlx_put_image_to_window(all->data.mlx_ptr, all->data.win_ptr,
 				all->data.img_floor, all->map->x_enemy[j] * 50, all->map->y_enemy[j] * 50);
-			mlx_put_image_to_window(all->data.mlx_ptr, all->data.win_ptr,
-				all->data.img_police_left, all->map->x_enemy[j] * 50, all->map->y_enemy[j] * 50);
-			j--;
+				mlx_put_image_to_window(all->data.mlx_ptr, all->data.win_ptr,
+				all->data.img_police_left, (all->map->x_enemy[j] + 1) * 50, all->map->y_enemy[j] * 50);
+				index_exit(all->map);
+				k = 1;
+			}
+			else if (all->map->map[all->map->y_enemy[j]][all->map->x_enemy[j] - 1] == '0')
+			{
+				all->map->map[all->map->y_enemy[j]][all->map->x_enemy[j] - 1] = 'W';
+				all->map->map[all->map->y_enemy[j]][all->map->x_enemy[j]] = '0';
+				mlx_put_image_to_window(all->data.mlx_ptr, all->data.win_ptr,
+				all->data.img_floor, all->map->x_enemy[j] * 50, all->map->y_enemy[j] * 50);
+				mlx_put_image_to_window(all->data.mlx_ptr, all->data.win_ptr,
+				all->data.img_police_left, (all->map->x_enemy[j] - 1) * 50, all->map->y_enemy[j] * 50);
+				index_exit(all->map);
+				k = 2;
+			}
+			if (all->map->map[all->map->y_enemy[j]][all->map->x_enemy[j] + 1] == 'P' && k == 1 )
+				exit(0);
+			if (all->map->map[all->map->y_enemy[j]][all->map->x_enemy[j] - 1] == 'P' && k == 2)
+				exit(0);
+			j++;
 		}
-		//mlx_put_image_to_window(all->data.mlx_ptr, all->data.win_ptr,
-		//	all->data.img_floor, all->x, all->y);
-		//mlx_put_image_to_window(all->data.mlx_ptr, all->data.win_ptr,
-		//	all->data.img_police_left, all->x , all->y);
-		//
 	}
-	if (i == 16000 )
+	if (i == 12000 )
 	{
-		while (j >= 0)
+		while (j < all->map->n_enemy)
 		{
-			mlx_put_image_to_window(all->data.mlx_ptr, all->data.win_ptr,
+			if (all->map->map[all->map->y_enemy[j]][all->map->x_enemy[j] + 1] == 'P' && k == 1 )
+				exit(0);
+			if (all->map->map[all->map->y_enemy[j]][all->map->x_enemy[j] - 1] == 'P' && k == 2)
+				exit(0);
+			if (all->map->map[all->map->y_enemy[j]][all->map->x_enemy[j] + 1] == '0')
+			{
+				all->map->map[all->map->y_enemy[j]][all->map->x_enemy[j] + 1] = 'W';
+				all->map->map[all->map->y_enemy[j]][all->map->x_enemy[j]] = '0';
+				mlx_put_image_to_window(all->data.mlx_ptr, all->data.win_ptr,
 				all->data.img_floor, all->map->x_enemy[j] * 50, all->map->y_enemy[j] * 50);
-			mlx_put_image_to_window(all->data.mlx_ptr, all->data.win_ptr,
-				all->data.img_police_right, all->map->x_enemy[j] * 50, all->map->y_enemy[j] * 50);
-			j--;
+				mlx_put_image_to_window(all->data.mlx_ptr, all->data.win_ptr,
+				all->data.img_police_right, (all->map->x_enemy[j] + 1) * 50, all->map->y_enemy[j] * 50);
+				index_exit(all->map);
+				k = 1;
+			}
+			else if (all->map->map[all->map->y_enemy[j]][all->map->x_enemy[j] - 1] == '0')
+			{
+				all->map->map[all->map->y_enemy[j]][all->map->x_enemy[j] - 1] = 'W';
+				all->map->map[all->map->y_enemy[j]][all->map->x_enemy[j]] = '0';
+				mlx_put_image_to_window(all->data.mlx_ptr, all->data.win_ptr,
+				all->data.img_floor, all->map->x_enemy[j] * 50, all->map->y_enemy[j] * 50);
+				mlx_put_image_to_window(all->data.mlx_ptr, all->data.win_ptr,
+				all->data.img_police_right, (all->map->x_enemy[j] - 1) * 50, all->map->y_enemy[j] * 50);
+				index_exit(all->map);
+				k = 2;
+			}
+			if (all->map->map[all->map->y_enemy[j]][all->map->x_enemy[j] + 1] == 'P' && k == 1 )
+				exit(0);
+			if (all->map->map[all->map->y_enemy[j]][all->map->x_enemy[j] - 1] == 'P' && k == 2)
+				exit(0);
+			j++;
 		}
-		//mlx_put_image_to_window(all->data.mlx_ptr, all->data.win_ptr,
-		//	all->data.img_floor, all->x, all->y);
-		//mlx_put_image_to_window(all->data.mlx_ptr, all->data.win_ptr,
-		//	all->data.img_police_right, all->x, all->y);
-			i = 0;
+		i = 0;
 	}
 	i++;
+	z++;
 	return 0;
 }
 
@@ -83,8 +132,7 @@ void	check_charactire(t_list *map, t_path data, int y, int x)
 	all = malloc(sizeof(t_all_list));
 	all->data = data;
 	all->map = map;
-	all->x = map->x;
-	all->y = map->y;
+	
 	if ((x == 0 && y == 0) || (x == map->size_with - 1
 			&& y == map->size_height - 1) || (y == 0 && x == map->size_with - 1)
 		|| (y == map->size_height - 1 && x == 0))
@@ -101,12 +149,6 @@ void	check_charactire(t_list *map, t_path data, int y, int x)
 	if (map->map[y][x] == 'P')
 		mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img_player,
 			map->x, map->y);
-	if (map->map[y][x] == 'W')
-	{
-		mlx_put_image_to_window(all->data.mlx_ptr, all->data.win_ptr,
-			all->data.img_police_right, all->x, all->y);
-		mlx_loop_hook (data.mlx_ptr, ft_loop_img, all);
-	}
 }
 
 /* -------------- function put images in window -------------- */
@@ -134,8 +176,8 @@ void	put_images_in_wind(t_list *map, t_path data, int x, int y)
 		map->y += 50;
 		y++;
 	}
+	mlx_loop_hook (data.mlx_ptr, ft_loop_img, all);
 	mlx_key_hook(data.win_ptr, myf, all);
-	
 }
 
 /*--------------- ft_data path img -------------------*/

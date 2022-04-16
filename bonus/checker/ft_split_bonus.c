@@ -6,7 +6,7 @@
 /*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 02:13:25 by hjrifi            #+#    #+#             */
-/*   Updated: 2022/04/16 07:28:24 by hjrifi           ###   ########.fr       */
+/*   Updated: 2022/04/16 20:52:59 by hjrifi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,11 @@ void	ft_split(int fd, t_list **map)
 }
 
 /* ---------------- ft_itoi ---------------- */
-
 char	*ft_itoi(int nbr)
 {
 	int	n;
 	int	i;
-	
+
 	i = 0;
 	n = nbr;
 	while (n > 0)
@@ -47,8 +46,5 @@ char	*ft_itoi(int nbr)
 		n /= 10 ;
 		i++;
 	}
-	while(i > 0)
-	{
-		
-	}
+	return (0);
 }

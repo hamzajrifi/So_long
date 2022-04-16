@@ -6,7 +6,7 @@
 /*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 17:19:19 by hjrifi            #+#    #+#             */
-/*   Updated: 2022/04/16 07:23:47 by hjrifi           ###   ########.fr       */
+/*   Updated: 2022/04/16 20:50:52 by hjrifi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,50 +38,55 @@ void	check_charactire_2(t_list *map, t_path data, int y, int x)
 /* ----------------- image loop -------------------*/
 int	ft_loop_img(t_all_list *all)
 {
-	static int	i, z;
-	int	j;
+	static int	i;
+	int			j;
+	int			*x_e;
+	int			*y_e;
 
+	y_e = all->map->y_enemy;
+	x_e = all->map->x_enemy;
 	j = all->map->n_enemy;
 	j = 0;
 	if (i == 5000)
 	{
 		while (j < all->map->n_enemy)
 		{
-			if (all->map->map[all->map->y_enemy[j]][all->map->x_enemy[j] + 1] == 'P')
+			if (all->map->map[y_e[j]][x_e[j] + 1] == 'P')
 				exit(0);
-			if (all->map->map[all->map->y_enemy[j]][all->map->x_enemy[j] - 1] == 'P')
+			if (all->map->map[y_e[j]][x_e[j] - 1] == 'P')
 				exit(0);
-			if (all->map->map[all->map->y_enemy[j]][all->map->x_enemy[j] + 1] == '0')
+			if (all->map->map[y_e[j]][x_e[j] + 1] == '0')
 			{
-				all->map->map[all->map->y_enemy[j]][all->map->x_enemy[j] + 1] = 'W';
-				all->map->map[all->map->y_enemy[j]][all->map->x_enemy[j]] = '0';
+				all->map->map[y_e[j]][x_e[j] + 1] = 'W';
+				all->map->map[y_e[j]][x_e[j]] = '0';
 				mlx_put_image_to_window(all->data.mlx_ptr, all->data.win_ptr,
-				all->data.img_floor, all->map->x_enemy[j] * 50, all->map->y_enemy[j] * 50);
+					all->data.img_floor, x_e[j] * 50, y_e[j] * 50);
 				mlx_put_image_to_window(all->data.mlx_ptr, all->data.win_ptr,
-				all->data.img_police_left, (all->map->x_enemy[j] + 1) * 50, all->map->y_enemy[j] * 50);
+					all->data.img_police_left, (x_e[j] + 1) * 50, y_e[j] * 50);
 				index_exit(all->map);
 			}
-			else if (all->map->map[all->map->y_enemy[j]][all->map->x_enemy[j] - 1] == '0')
+			else if (all->map->map[y_e[j]][x_e[j] - 1] == '0')
 			{
-				all->map->map[all->map->y_enemy[j]][all->map->x_enemy[j] - 1] = 'W';
-				all->map->map[all->map->y_enemy[j]][all->map->x_enemy[j]] = '0';
+				all->map->map[y_e[j]][x_e[j] - 1] = 'W';
+				all->map->map[y_e[j]][x_e[j]] = '0';
 				mlx_put_image_to_window(all->data.mlx_ptr, all->data.win_ptr,
-				all->data.img_floor, all->map->x_enemy[j] * 50, all->map->y_enemy[j] * 50);
+					all->data.img_floor, x_e[j] * 50, y_e[j] * 50);
 				mlx_put_image_to_window(all->data.mlx_ptr, all->data.win_ptr,
-				all->data.img_police_left, (all->map->x_enemy[j] - 1) * 50, all->map->y_enemy[j] * 50);
+					all->data.img_police_left, (x_e[j] - 1) * 50, y_e[j] * 50);
 				index_exit(all->map);
 			}
 			j++;
-			if ( j < all->map->n_enemy && all->map->map[all->map->y_enemy[j]][all->map->x_enemy[j] + 1] == 'P')
+			if (j < all->map->n_enemy && all->map->map[y_e[j]][x_e[j] + 1]
+				== 'P')
 				exit(0);
-			if ( j < all->map->n_enemy && all->map->map[all->map->y_enemy[j]][all->map->x_enemy[j] - 1] == 'P')
+			if (j < all->map->n_enemy && all->map->map[y_e[j]][x_e[j] - 1]
+				== 'P')
 				exit(0);
 		}
 		i = 0;
 	}
 	i++;
-	z++;
-	return 0;
+	return (0);
 }
 
 /* ------------ check charactire  ------------------------ */
@@ -130,7 +135,7 @@ void	put_images_in_wind(t_list *map, t_path data, int x, int y)
 		map->y += 50;
 		y++;
 	}
-	mlx_string_put(all->data.mlx_ptr, all->data.win_ptr, 50, 50, 26, ft_putnbr(map->n_coin));
+	mlx_string_put(all->data.mlx_ptr, all->data.win_ptr, 50, 50, 26, "hjrifi");
 	mlx_loop_hook (data.mlx_ptr, ft_loop_img, all);
 	mlx_key_hook(data.win_ptr, myf, all);
 }
@@ -163,7 +168,7 @@ t_path	ft_data(t_path data, t_list *map)
 	data.img_police_left = mlx_xpm_file_to_image(data.mlx_ptr,
 			data.path_police_left, &(data.img_width), &(data.img_height));
 	data.img_police_right = mlx_xpm_file_to_image(data.mlx_ptr,
-			data.path_police_right, &(data.img_width), &(data.img_height));	
+			data.path_police_right, &(data.img_width), &(data.img_height));
 	return (data);
 }
 

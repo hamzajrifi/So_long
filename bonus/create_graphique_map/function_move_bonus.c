@@ -6,7 +6,7 @@
 /*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 05:55:24 by hjrifi            #+#    #+#             */
-/*   Updated: 2022/04/15 08:26:01 by hjrifi           ###   ########.fr       */
+/*   Updated: 2022/04/16 20:43:45 by hjrifi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int	move_player_left(t_all_list *all, int x, int y)
 		x = 0;
 		while (all->map->map[y][x] != 'P' && all->map->size_with > x)
 			x++;
-		if (all->map->size_with > x && (all->map->map[y][x - 1] == 'E' ||
-			all->map->map[y][x - 1] == 'W'))
+		if (all->map->size_with > x && (all->map->map[y][x - 1] == 'E'
+			|| all->map->map[y][x - 1] == 'W'))
 			check_coin(all, y, x - 1);
 		if (all->map->map[y][x] == 'P' && all->map->map[y][x - 1] != '1'
 				&& all->map->map[y][x - 1] != 'E')
@@ -76,8 +76,8 @@ int	move_player_down(t_all_list *all, int x, int y)
 		x = 0;
 		while (all->map->map[y][x] != 'P' && all->map->size_with > x)
 			x++;
-		if (all->map->size_with > x && (all->map->map[y + 1][x] == 'E' ||
-			all->map->map[y + 1][x] == 'W'))
+		if (all->map->size_with > x && (all->map->map[y + 1][x] == 'E'
+			|| all->map->map[y + 1][x] == 'W'))
 			check_coin(all, y + 1, x);
 		if (all->map->map[y][x] == 'P' && all->map->map[y + 1][x] != '1'
 			&& all->map->map[y + 1][x] != 'E')
@@ -104,8 +104,8 @@ int	move_player_up(t_all_list *all, int x, int y)
 		x = 0;
 		while (all->map->map[y][x] != 'P' && all->map->size_with > x)
 			x++;
-		if (all->map->size_with > x && (all->map->map[y - 1][x] == 'E' ||
-			all->map->map[y - 1][x] == 'W'))
+		if (all->map->size_with > x && (all->map->map[y - 1][x] == 'E'
+			|| all->map->map[y - 1][x] == 'W'))
 			check_coin(all, y - 1, x);
 		if (all->map->map[y][x] == 'P' && all->map->map[y - 1][x] != '1'
 			&& all->map->map[y - 1][x] != 'E')
@@ -135,13 +135,13 @@ int	myf(int key, t_all_list *all)
 	y = 0;
 	x = 0;
 	n_move = 0;
-	if (key == 0)
+	if (key == 0 || key == 123)
 		n_move += move_player_left(all, x, y);
-	else if (key == 2)
+	else if (key == 2 || key == 124)
 		n_move += move_player_right(all, x, y);
-	else if (key == 1)
+	else if (key == 1 || key == 125)
 		n_move += move_player_down(all, x, y);
-	else if (key == 13)
+	else if (key == 13 || key == 126)
 		n_move += move_player_up(all, x, y);
 	else if (key == 53)
 		exit(0);

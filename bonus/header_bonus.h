@@ -6,12 +6,12 @@
 /*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 02:27:46 by hjrifi            #+#    #+#             */
-/*   Updated: 2022/04/16 00:58:38 by hjrifi           ###   ########.fr       */
+/*   Updated: 2022/04/16 20:54:01 by hjrifi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HEADER_H
-# define HEADER_H
+#ifndef HEADER_BONUS_H
+# define HEADER_BONUS_H
 
 # include <unistd.h>
 # include <mlx.h>

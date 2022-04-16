@@ -6,7 +6,7 @@
 /*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 05:59:32 by hjrifi            #+#    #+#             */
-/*   Updated: 2022/04/16 06:45:56 by hjrifi           ###   ########.fr       */
+/*   Updated: 2022/04/16 21:27:44 by hjrifi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,26 +28,14 @@ int	check_coin(t_all_list *all, int y, int x)
 	return (1);
 }
 
-/* -------------- put index door exit in arrary --------*/
-void	index_exit(t_list *map)
+/* ------------ check enemy and sprite -------------- */
+void	check_enemy_sprite(t_list *map, int k, int x, int y)
 {
-	int			y;
-	int			x;
 	int			i;
 	int			j;
-	static int	k;
 
 	i = 0;
 	j = 0;
-	y = 0;
-	if (k == 0)
-	{
-		map->x_exit = malloc(sizeof(int) * map->n_hole);
-		map->y_exit = malloc(sizeof(int) * map->n_hole);
-		map->x_enemy = malloc(sizeof(int) * map->n_enemy);
-		map->y_enemy = malloc(sizeof(int) * map->n_enemy);
-		k++;
-	}
 	while (y < map->size_height)
 	{
 		x = 0;
@@ -67,6 +55,29 @@ void	index_exit(t_list *map)
 		}
 		y++;
 	}
+}
+
+/* -------------- put index door exit in arrary --------*/
+void	index_exit(t_list *map)
+{
+	static int	k;
+	int			x;
+	int			y;
+
+	x = 0;
+	y = 0;
+	if (k == 0)
+	{
+		map->x_exit = malloc(sizeof(int) * map->n_hole);
+		map->y_exit = malloc(sizeof(int) * map->n_hole);
+		map->x_enemy = malloc(sizeof(int) * map->n_enemy);
+		map->y_enemy = malloc(sizeof(int) * map->n_enemy);
+		if (!(map->x_exit) || !(map->y_exit) || !(map->x_enemy)
+			|| !(map->y_enemy))
+			return ;
+		k++;
+	}
+	check_enemy_sprite(map, k, x, y);
 }
 
 /** -------------- function calcul coin --------------*/
@@ -90,9 +101,8 @@ int	ft_calcul_coin(t_list *map)
 				map->n_coin += 1;
 			if (map->map[y][x] == 'E')
 				map->n_hole += 1;
-			if (map->map[y][x] == 'W')
+			if (map->map[y][x++] == 'W')
 				map->n_enemy += 1;
-			x++;
 		}
 		y++;
 	}
@@ -109,6 +119,8 @@ void	create_map(int fd, t_list *map)
 	i = 0;
 	n = map->size_height;
 	map->map = malloc(sizeof(char *) * n + 1);
+	if (!(map->map))
+		return ;
 	while (n > i)
 	{
 		map->map[i] = get_next_line(fd);

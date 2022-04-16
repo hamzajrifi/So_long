@@ -6,7 +6,7 @@
 /*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 02:13:25 by hjrifi            #+#    #+#             */
-/*   Updated: 2022/04/15 01:46:44 by hjrifi           ###   ########.fr       */
+/*   Updated: 2022/04/16 06:42:30 by hjrifi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	ft_split(int fd, t_list **map)
 	char	*ptr;
 
 	ptr = get_next_line(fd);
+	if (!ptr)
+		ft_error("map it's empty");
 	(*map)->size_with = ft_strlen(ptr);
 	i = 0;
 	while (ptr)

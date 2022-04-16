@@ -30,7 +30,7 @@ $(NAME)	:	$(O_FILES) $(HEADER)
 re : fclean all
 
 clean : 
-	@rm -f  *.o checker/*.o ft_error/*.o \
+	@rm -f  *.o  bonus/*.o checker/*.o ft_error/*.o \
 	get_next_line/*.o create_graphique_map/*.o   \
 	bonus/checker/*.o bonus/ft_error/*.o \
 	bonus/get_next_line/*.o bonus/create_graphique_map/*.o 

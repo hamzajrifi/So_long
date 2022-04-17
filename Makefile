@@ -25,7 +25,7 @@ all : $(NAME)
 $(NAME)	:	$(O_FILES) $(HEADER)
 			@$(CC) $(C_FLAG)  -c $(C_FILES) 
 			@ar -rc $(NAME) $(O_FILES)
-			@$(CC) $(C_FLAG) $(FLAG_MLX)  -o so_long so_long.c $(NAME)
+			@$(CC) -fsanitize=address $(C_FLAG) $(FLAG_MLX)  -o so_long so_long.c $(NAME)
 
 re : fclean all
 
@@ -63,4 +63,4 @@ bonus : $(BNS_NAME)
 $(BNS_NAME) :	$(BNS_O_FILES) $(BNS_HEADER)
 				@$(CC) $(C_FLAG) -c $(BNS_C_FILES) 
 				@ar -rc $(BNS_NAME)  $(BNS_O_FILES)
-				@$(CC) $(C_FLAG) $(FLAG_MLX) -o so_long_bonus ./bonus/so_long_bonus.c $(BNS_NAME)
+				@$(CC)  $(C_FLAG) $(FLAG_MLX) -o so_long_bonus ./bonus/so_long_bonus.c $(BNS_NAME)

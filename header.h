@@ -6,7 +6,7 @@
 /*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 02:27:46 by hjrifi            #+#    #+#             */
-/*   Updated: 2022/04/17 19:52:05 by hjrifi           ###   ########.fr       */
+/*   Updated: 2022/04/17 22:41:22 by hjrifi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <mlx.h>
 # include <stdlib.h>
 # include <fcntl.h>
-# include <stdio.h>
 
 typedef struct n_list
 {

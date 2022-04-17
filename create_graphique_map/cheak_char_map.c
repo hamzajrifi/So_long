@@ -6,7 +6,7 @@
 /*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 17:19:19 by hjrifi            #+#    #+#             */
-/*   Updated: 2022/04/17 02:07:01 by hjrifi           ###   ########.fr       */
+/*   Updated: 2022/04/17 22:41:03 by hjrifi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ void	path_image(t_list *map)
 
 	y = 0;
 	x = 0;
+	data.mlx_ptr = mlx_init();
 	data.path_floor = "./img/floor.xpm";
 	data.path_up = "./img/wall_up.xpm";
 	data.path_down = "./img/wall_down.xpm";
@@ -130,7 +131,6 @@ void	path_image(t_list *map)
 	data.path_corner = "./img/corner.xpm";
 	data.path_coin = "./img/coin.xpm";
 	data.path_wall_center = "./img/wall_center.xpm";
-	data.mlx_ptr = mlx_init();
 	data = ft_data(data, map);
 	put_images_in_wind(map, data, x, y);
 	mlx_hook(data.win_ptr, 17, 0, ft_bye, "bye\n");

@@ -6,7 +6,7 @@
 /*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 00:22:45 by hjrifi            #+#    #+#             */
-/*   Updated: 2022/04/17 20:35:16 by hjrifi           ###   ########.fr       */
+/*   Updated: 2022/04/17 21:25:20 by hjrifi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	check_map(int fd, int line_map, int n_check, int i)
 
 	ptr = get_next_line(fd);
 	size_line = ft_strlen(ptr);
-	while (n_check == 0 && line_map > i + 1)
+	while (n_check == 0)
 	{
 		if (ptr)
 			temp = ft_strdup(ptr);
@@ -113,7 +113,7 @@ void	check_map(int fd, int line_map, int n_check, int i)
 			check_p_c(temp, n_check);
 			free(ptr);
 			ptr = get_next_line(fd);
-			if (n_check == 0 && line_map > i + 1)
+			if (n_check == 0 && line_map != i + 1)
 				free(temp);
 		}
 		i++;

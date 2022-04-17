@@ -6,7 +6,7 @@
 /*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 05:59:32 by hjrifi            #+#    #+#             */
-/*   Updated: 2022/04/17 02:00:09 by hjrifi           ###   ########.fr       */
+/*   Updated: 2022/04/17 22:34:42 by hjrifi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	check_coin(t_all_list *all, int y, int x)
 }
 
 /* -------------- put index door exit in arrary --------*/
-void	index_exit(t_list *map, int n)
+void	index_exit(t_list *map)
 {
 	int	y;
 	int	x;
@@ -35,8 +35,8 @@ void	index_exit(t_list *map, int n)
 
 	i = 0;
 	y = 0;
-	map->x_exit = malloc(sizeof(int) * n);
-	map->y_exit = malloc(sizeof(int) * n);
+	map->x_exit = malloc(sizeof(int) * map->n_hole);
+	map->y_exit = malloc(sizeof(int) * map->n_hole);
 	if (!(map->x_exit) || !(map->y_exit))
 		return ;
 	while (y < map->size_height)
@@ -79,7 +79,7 @@ int	ft_calcul_coin(t_list *map)
 		}
 		y++;
 	}
-	index_exit(map, n);
+	index_exit(map);
 	return (n);
 }
 

@@ -6,22 +6,17 @@
 /*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 01:54:32 by hjrifi            #+#    #+#             */
-/*   Updated: 2022/04/17 19:49:28 by hjrifi           ###   ########.fr       */
+/*   Updated: 2022/04/17 22:40:19 by hjrifi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void put(char *s)
-{
-	(void)s;
-}
 int	main(int ac, char **av)
 {
 	int		fd;
-
 	t_list	*data_map;
-	(void)	ac;
+
 	data_map = malloc(sizeof(t_list));
 	fd = open(av[1], O_RDWR);
 	ft_split(fd, &data_map);

@@ -6,7 +6,7 @@
 /*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 17:19:19 by hjrifi            #+#    #+#             */
-/*   Updated: 2022/04/15 06:27:17 by hjrifi           ###   ########.fr       */
+/*   Updated: 2022/04/17 02:07:01 by hjrifi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ void	put_images_in_wind(t_list *map, t_path data, int x, int y)
 	t_all_list	*all;
 
 	all = malloc(sizeof(t_all_list));
+	if (!(all))
+		return ;
 	all->map = map;
 	all->data = data;
 	map->y = 0;

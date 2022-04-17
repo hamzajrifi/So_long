@@ -6,7 +6,7 @@
 /*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 05:59:32 by hjrifi            #+#    #+#             */
-/*   Updated: 2022/04/15 06:10:01 by hjrifi           ###   ########.fr       */
+/*   Updated: 2022/04/17 02:00:09 by hjrifi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	index_exit(t_list *map, int n)
 	y = 0;
 	map->x_exit = malloc(sizeof(int) * n);
 	map->y_exit = malloc(sizeof(int) * n);
+	if (!(map->x_exit) || !(map->y_exit))
+		return ;
 	while (y < map->size_height)
 	{
 		x = 0;

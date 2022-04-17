@@ -23,7 +23,7 @@ O_FILES = $(C_FILES:.c=.o)
 all : $(NAME)
 
 $(NAME)	:	$(O_FILES) $(HEADER)
-			@$(CC) $(C_FLAG) -c $(C_FILES) 
+			@$(CC) $(C_FLAG)  -c $(C_FILES) 
 			@ar -rc $(NAME) $(O_FILES)
 			@$(CC) $(C_FLAG) $(FLAG_MLX)  -o so_long so_long.c $(NAME)
 

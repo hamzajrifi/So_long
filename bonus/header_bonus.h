@@ -6,7 +6,7 @@
 /*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 02:27:46 by hjrifi            #+#    #+#             */
-/*   Updated: 2022/04/16 20:54:01 by hjrifi           ###   ########.fr       */
+/*   Updated: 2022/04/17 00:45:27 by hjrifi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	create_map(int fd, t_list *map);
 void	check_type_map(char *name_map, int fd);
 void	ft_split(int fd, t_list **data_map);
 void	ft_error(char *str);
-void	ft_putnbr(long nbr);
+void	ft_puts(t_all_list *all, long n_move);
 void	check_map(int fd, int line_map, int n_check, int i);
 int		check_character(char *ptr);
 void	check_charactire(t_list *map, t_path data, int y, int x);
@@ -99,4 +99,6 @@ int		check_coin(t_all_list *all, int y, int x);
 int		ft_bye(char *ptr);
 void	path_image(t_list *map);
 void	index_exit(t_list *map);
+int		ft_loop_img(t_all_list *all);
+char	*ft_itoa(int n);
 #endif

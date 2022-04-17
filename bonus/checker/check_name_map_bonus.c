@@ -6,7 +6,7 @@
 /*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 21:58:12 by hjrifi            #+#    #+#             */
-/*   Updated: 2022/04/15 08:04:59 by hjrifi           ###   ########.fr       */
+/*   Updated: 2022/04/17 01:05:22 by hjrifi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,21 +34,6 @@ void	check_type_map(char *name_map, int fd)
 	}
 	free(tab);
 	close(fd);
-}
-
-/* --------------- ft_putnbr -----------*/
-void	ft_putnbr(long nbr)
-{
-	if (nbr > 9)
-	{
-		ft_putnbr(nbr / 10);
-		ft_putnbr(nbr % 10);
-	}
-	else
-	{
-		nbr = nbr + 48;
-		write(1, &nbr, 1);
-	}
 }
 
 //--------  check argiment ---------/

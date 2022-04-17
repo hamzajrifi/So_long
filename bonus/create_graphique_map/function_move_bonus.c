@@ -6,7 +6,7 @@
 /*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 05:55:24 by hjrifi            #+#    #+#             */
-/*   Updated: 2022/04/16 20:43:45 by hjrifi           ###   ########.fr       */
+/*   Updated: 2022/04/17 01:05:33 by hjrifi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,8 +148,7 @@ int	myf(int key, t_all_list *all)
 	if (n_move == 1)
 	{
 		n += n_move;
-		ft_putnbr(n);
-		write(1, "\n", 1);
+		ft_puts(all, n);
 	}
 	return (n);
 }

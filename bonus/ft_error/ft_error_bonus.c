@@ -6,7 +6,7 @@
 /*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 21:26:25 by hjrifi            #+#    #+#             */
-/*   Updated: 2022/04/15 07:53:49 by hjrifi           ###   ########.fr       */
+/*   Updated: 2022/04/17 01:09:59 by hjrifi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ void	ft_error(char *str)
 	int		i;
 
 	i = ft_strlen(str);
-	write(1, "Error\n", 7);
-	write(2, str, i);
+	write(2, "Error\n", 7);
 	exit(1);
 }
 

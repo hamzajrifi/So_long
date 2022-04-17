@@ -53,6 +53,7 @@ BNS_C_FILES =	./bonus/get_next_line/get_next_line_utils_bonus.c \
 				./bonus/ft_error/ft_error_bonus.c \
 				./bonus/create_graphique_map/function_move_bonus.c \
 				./bonus/create_graphique_map/check_char_map_2_bonus.c \
+				./bonus/create_graphique_map/check_enemy_sprite.c \
 				./bonus/so_long_bonus.c
 
 BNS_O_FILES = $(BNS_C_FILES:.c=.o)

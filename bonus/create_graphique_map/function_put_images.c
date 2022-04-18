@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long_bonus.c                                    :+:      :+:    :+:   */
+/*   function_put_images.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/09 01:54:32 by hjrifi            #+#    #+#             */
-/*   Updated: 2022/04/17 23:48:49 by hjrifi           ###   ########.fr       */
+/*   Created: 2022/04/18 01:01:09 by hjrifi            #+#    #+#             */
+/*   Updated: 2022/04/18 01:18:20 by hjrifi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header_bonus.h"
+#include "../header_bonus.h"
 
-int	main(int ac, char **av)
+void	put_images(t_list *map, t_path data, int x, int y)
 {
-	int		fd;
-	t_list	*data_map;
-
-	data_map = malloc(sizeof(t_list));
-	if (!(data_map))
-		return (0);
-	data_map->n_move = 0;
-	fd = open(av[1], O_RDWR);
-	ft_split(fd, &data_map);
-	fd = open(av[1], O_RDWR);
-	check_arg(ac, fd, data_map->size_height);
-	check_type_map(av[1], fd);
-	fd = open(av[1], O_RDWR);
-	create_map(fd, data_map);
-	return (0);
+	map->x = 0;
+	x = 0;
+	while (x < map->size_with)
+	{
+		mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img_floor,
+			map->x, map->y);
+		check_charactire(map, data, y, x);
+		map->x += 50;
+		x++;
+	}
+	map->y += 50;
 }

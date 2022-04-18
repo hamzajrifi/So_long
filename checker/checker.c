@@ -6,7 +6,7 @@
 /*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 00:22:45 by hjrifi            #+#    #+#             */
-/*   Updated: 2022/04/17 21:43:30 by hjrifi           ###   ########.fr       */
+/*   Updated: 2022/04/18 00:27:07 by hjrifi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ int	check_one_up_down(char *ptr, int k, int size_line)
 	if (((k > 0 && ptr[i] != '\0') && (k > 0 && ptr[i] != '\n'))
 		|| (size_line != i + 1 && k > 0))
 	{
-		ft_error("don't have one in last line\n");
+		ft_error("map must be surrounded by walls\n");
 	}
 	if (ptr[i] != '\n' && k == 0)
 	{
-		ft_error("don't have one in first line\n");
+		ft_error("map must be surrounded by walls\n");
 	}
 	return (ft_strlen(ptr));
 }
@@ -46,18 +46,18 @@ int	check_one_left_right(char *ptr, int size_line, int n_map)
 	{
 		size_line -= 1;
 		if (ptr[0] != '1' || ptr[ft_strlen(ptr) - 1] != '1')
-			ft_error("wall left or right it's wrong 1\n");
+			ft_error("map must be surrounded by walls\n");
 	}	
 	if (size_line != ft_strlen(ptr) || check_character(ptr) == 1)
 	{
-		ft_error("wall it's wrong 2 \n");
+		ft_error("the lines of the map are not identical\n");
 	}
 	while ((ptr[++i] != '\n' && ptr[i]))
 	{
 		if (ptr[0] != '1')
-			ft_error("first wall it's wrong \n");
+			ft_error("map must be surrounded by walls\n");
 		else if (ptr[i + 1] == '\n' && ptr[i] != '1')
-			ft_error("right wall it's wrong\n");
+			ft_error("map must be surrounded by walls\n");
 	}
 	return (0);
 }
@@ -72,14 +72,14 @@ void	check_p_c(char *ptr, int n)
 
 	i = 0;
 	if ((p != 1 || e < 1 || c == 0) && n == 1)
-		ft_error("check your port and player\n");
+		ft_error("Check the map requirments\n");
 	else if (n == 1)
 	{
 		p = 0;
 		e = 0;
 	}
 	if (p > 1)
-		ft_error("check player");
+		ft_error("Number of players is greater than one\n");
 	while (ptr[i])
 	{
 		if (ptr[i] == 'P')
@@ -119,4 +119,5 @@ void	check_map(int fd, int line_map, int n_check, int i)
 		i++;
 	}
 	free(ptr);
+	free(temp);
 }

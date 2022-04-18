@@ -6,7 +6,7 @@
 /*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 17:19:19 by hjrifi            #+#    #+#             */
-/*   Updated: 2022/04/17 22:49:20 by hjrifi           ###   ########.fr       */
+/*   Updated: 2022/04/18 01:16:18 by hjrifi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	put_images_in_wind(t_list *map, t_path data, int x, int y)
 	t_all_list	*all;
 
 	all = malloc(sizeof(t_all_list));
-	if (!(all))
+	if (!all)
 		return ;
 	all->map = map;
 	all->data = data;
@@ -71,17 +71,7 @@ void	put_images_in_wind(t_list *map, t_path data, int x, int y)
 	map->size_with = map->size_with - 1;
 	while (y < map->size_height)
 	{
-		map->x = 0;
-		x = 0;
-		while (x < map->size_with)
-		{
-			mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img_floor,
-				map->x, map->y);
-			check_charactire(map, data, y, x);
-			map->x += 50;
-			x++;
-		}
-		map->y += 50;
+		put_images(map, data, x, y);
 		y++;
 	}
 	mlx_loop_hook (data.mlx_ptr, ft_loop_img, all);

@@ -6,7 +6,7 @@
 /*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 01:54:32 by hjrifi            #+#    #+#             */
-/*   Updated: 2022/04/17 22:48:38 by hjrifi           ###   ########.fr       */
+/*   Updated: 2022/04/18 00:07:22 by hjrifi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	main(int ac, char **av)
 	data_map = malloc(sizeof(t_list));
 	if (!(data_map))
 		return (0);
+	data_map->n_move = 0;
 	fd = open(av[1], O_RDWR);
 	ft_split(fd, &data_map);
 	fd = open(av[1], O_RDWR);

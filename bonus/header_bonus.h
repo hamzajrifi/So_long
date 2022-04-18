@@ -6,7 +6,7 @@
 /*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 02:27:46 by hjrifi            #+#    #+#             */
-/*   Updated: 2022/04/17 22:41:36 by hjrifi           ###   ########.fr       */
+/*   Updated: 2022/04/18 01:18:10 by hjrifi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct n_list
 	int		n_coin;
 	int		n_hole;
 	int		n_enemy;
+	long	n_move;
 	int		*x_exit;
 	int		*y_exit;
 	int		*x_enemy;
@@ -100,4 +101,6 @@ void	path_image(t_list *map);
 void	index_exit(t_list *map);
 int		ft_loop_img(t_all_list *all);
 char	*ft_itoa(int n);
+void	ft_putnbr(long nbr);
+void	put_images(t_list *map, t_path data, int x, int y);
 #endif

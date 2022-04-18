@@ -6,7 +6,7 @@
 /*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 02:27:46 by hjrifi            #+#    #+#             */
-/*   Updated: 2022/04/17 22:41:22 by hjrifi           ###   ########.fr       */
+/*   Updated: 2022/04/17 23:43:43 by hjrifi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct n_list
 	int		size_with;
 	int		n_coin;
 	int		n_hole;
+	long	n_move;
 	int		*x_exit;
 	int		*y_exit;
 	int		x;

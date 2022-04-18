@@ -25,7 +25,7 @@ all : $(NAME)
 $(NAME)	:	$(O_FILES) $(HEADER)
 			@$(CC) $(C_FLAG)  -c $(C_FILES) 
 			@ar -rc $(NAME) $(O_FILES)
-			@$(CC) -fsanitize=address $(C_FLAG) $(FLAG_MLX)  -o so_long so_long.c $(NAME)
+			@$(CC) $(C_FLAG) $(FLAG_MLX)  -o so_long so_long.c $(NAME)
 
 re : fclean all
 
@@ -54,6 +54,7 @@ BNS_C_FILES =	./bonus/get_next_line/get_next_line_utils_bonus.c \
 				./bonus/create_graphique_map/function_move_bonus.c \
 				./bonus/create_graphique_map/check_char_map_2_bonus.c \
 				./bonus/create_graphique_map/check_enemy_sprite.c \
+				./bonus/create_graphique_map/function_put_images.c \
 				./bonus/so_long_bonus.c
 
 BNS_O_FILES = $(BNS_C_FILES:.c=.o)

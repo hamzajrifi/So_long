@@ -6,7 +6,7 @@
 /*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 05:55:24 by hjrifi            #+#    #+#             */
-/*   Updated: 2022/04/17 22:36:45 by hjrifi           ###   ########.fr       */
+/*   Updated: 2022/04/18 00:52:08 by hjrifi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,26 +124,24 @@ int	move_player_up(t_all_list *all, int x, int y)
 int	myf(int key, t_all_list *all)
 {
 	static long	n;
-	long long	n_move;
 	int			x;
 	int			y;
 
 	y = 0;
 	x = 0;
-	n_move = 0;
 	if (key == 0 || key == 123)
-		n_move += move_player_left(all, x, y);
+		all->map->n_move += move_player_left(all, x, y);
 	else if (key == 2 || key == 124)
-		n_move += move_player_right(all, x, y);
+		all->map->n_move += move_player_right(all, x, y);
 	else if (key == 1 || key == 125)
-		n_move += move_player_down(all, x, y);
+		all->map->n_move += move_player_down(all, x, y);
 	else if (key == 13 || key == 126)
-		n_move += move_player_up(all, x, y);
+		all->map->n_move += move_player_up(all, x, y);
 	else if (key == 53)
 		exit(0);
-	if (n_move == 1)
+	if (n < all->map->n_move)
 	{
-		n += n_move;
+		n = all->map->n_move;
 		ft_putnbr(n);
 		write(1, "\n", 1);
 	}

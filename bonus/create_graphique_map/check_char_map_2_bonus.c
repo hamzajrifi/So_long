@@ -6,7 +6,7 @@
 /*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 05:59:32 by hjrifi            #+#    #+#             */
-/*   Updated: 2022/04/17 23:30:12 by hjrifi           ###   ########.fr       */
+/*   Updated: 2022/04/17 23:51:48 by hjrifi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	check_coin(t_all_list *all, int y, int x)
 	}
 	else if (all->map->map[y][x] == 'E' && !(all->map->n_coin))
 	{
+		ft_putnbr(all->map->n_move + 1);
+		write(1, "\n", 1);
 		exit(0);
 	}
 	else if (all->map->map[y][x] == 'W')

@@ -6,7 +6,7 @@
 /*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 05:59:32 by hjrifi            #+#    #+#             */
-/*   Updated: 2022/04/17 22:34:42 by hjrifi           ###   ########.fr       */
+/*   Updated: 2022/04/18 00:49:25 by hjrifi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,11 @@ int	check_coin(t_all_list *all, int y, int x)
 			all->data.img_floor, x * 50, y * 50);
 	}
 	else if (all->map->map[y][x] == 'E' && !(all->map->n_coin))
+	{
+		ft_putnbr(all->map->n_move + 1);
+		write(1, "\n", 1);
 		exit(0);
+	}
 	return (1);
 }
 
@@ -92,6 +96,8 @@ void	create_map(int fd, t_list *map)
 	i = 0;
 	n = map->size_height;
 	map->map = malloc(sizeof(char *) * n + 1);
+	if (!map->map)
+		return ;
 	while (n > i)
 	{
 		map->map[i] = get_next_line(fd);

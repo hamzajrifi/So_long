@@ -6,7 +6,7 @@
 /*   By: hjrifi <hjrifi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 21:58:12 by hjrifi            #+#    #+#             */
-/*   Updated: 2022/04/17 01:05:22 by hjrifi           ###   ########.fr       */
+/*   Updated: 2022/04/18 00:03:05 by hjrifi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	check_type_map(char *name_map, int fd)
 		k++;
 	if (tab[j] != '\0')
 	{
-		ft_error("cheack type file map\n");
+		ft_error("Check The file format\n");
 		free (tab);
 		return ;
 	}
